@@ -1,21 +1,25 @@
 package com.ess.quickquestions.ui.signviews
 
-import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.ess.quickquestions.R
 import kotlinx.android.synthetic.main.fragment_sign.*
 
 class SignFragment : Fragment() {
 
+    var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign, container, false)
     }
@@ -48,4 +52,18 @@ class SignFragment : Fragment() {
            linear_layout_sign_up.visibility = View.VISIBLE
        }
    }
+
+
+    //Password Control
+    private fun isPasswordValid(text: Editable?): Boolean{
+        return text != null && text.length >= 8
+    }
+
+    private fun isPasswordMatch(password: Editable?, repassword: Editable?): Boolean{
+        return password == repassword
+    }
+
+    private fun isEmailValid(email: Editable?) : Boolean{
+        return email != null && email.trim().matches(Regex(emailPattern))
+    }
 }
