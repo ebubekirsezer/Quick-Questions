@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.signviews.SignFragment">
+    tools:context=".ui.signviews.SignFragment"
+    android:background="@color/colorPrimaryDark">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_marginTop="72dp"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content">
 
-</FrameLayout>
+            <Button
+                android:id="@+id/button_sign_in"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Sign In"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/textColorPrimary"
+                android:layout_marginBottom="4dp"/>
+            <View
+                android:id="@+id/horizontal_sign_in_line"
+                android:layout_width="150dp"
+                android:layout_height="2dp"
+                android:background="@color/textColorPrimary"
+                android:layout_alignParentBottom="true"/>
+
+            <Button
+                android:id="@+id/button_sign_up"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="Sign Up"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/textGreyColor"
+                android:layout_marginBottom="4dp"
+                android:layout_toEndOf="@id/button_sign_in"/>
+            <View
+                android:id="@+id/horizontal_sign_up_line"
+                android:layout_width="150dp"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/textGreyColor"
+                android:layout_toEndOf="@id/horizontal_sign_in_line"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</ScrollView>

@@ -7,4 +7,6 @@
     <color name="colorSecondaryLight">#81e8ff</color>
     <color name="colorSecondaryDark">#0086cb</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="textGreyColor">#D3D3D3</color>
 </resources>
