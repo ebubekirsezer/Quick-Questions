@@ -12,8 +12,6 @@ import kotlinx.android.synthetic.main.fragment_sign.*
 
 class SignFragment : Fragment() {
 
-
-    @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,7 +21,6 @@ class SignFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         onTabSignClick()
 
         super.onViewCreated(view, savedInstanceState)

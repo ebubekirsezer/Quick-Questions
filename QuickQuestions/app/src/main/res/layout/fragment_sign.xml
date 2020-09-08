@@ -9,14 +9,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="18dp">
+        android:padding="@dimen/large_padding">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="@dimen/big_top_margin"
             android:gravity="center">
 
             <Button
@@ -26,7 +26,7 @@
                 android:layout_marginBottom="4dp"
                 android:background="@android:color/transparent"
                 android:gravity="center"
-                android:text="Sign In"
+                android:text="@string/sign_in"
                 android:textColor="@color/textColorPrimary"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -47,7 +47,7 @@
                 android:background="@android:color/transparent"
                 android:focusableInTouchMode="true"
                 android:gravity="center"
-                android:text="Sign Up"
+                android:text="@string/sign_up"
                 android:textColor="@color/textGreyColor"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -66,41 +66,40 @@
             android:id="@+id/linear_layout_sign_in"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="@dimen/top_margin"
                 android:fontFamily="@font/quicksand"
-                android:text="Quick Questions"
+                android:text="@string/quick_questions"
                 android:textColor="@color/textColorPrimary"
-                android:textSize="36sp" />
+                android:textSize="@dimen/title_text_size" />
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="@dimen/top_margin"
                 android:background="@android:color/white"
-                android:elevation="8dp"
-                app:cardCornerRadius="8dp">
+                android:elevation="@dimen/small_margin"
+                app:cardCornerRadius="@dimen/small_margin">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="@dimen/small_margin"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:layout_marginRight="@dimen/small_margin"
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Base.Widget.MaterialComponents.TextInputLayout."
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="E-mail"
+                        android:hint="@string/e_mail"
                         app:startIconDrawable="@drawable/ic_mail">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -114,7 +113,7 @@
                         style="@style/Base.Widget.MaterialComponents.TextInputLayout."
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         app:endIconMode="password_toggle"
                         app:errorEnabled="true"
                         app:startIconDrawable="@drawable/ic_lock">
@@ -138,19 +137,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:text="Sign In" />
+                    android:text="@string/sign_in" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/cancel_button"
                     style="@style/Widget.QuickQuestion.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginEnd="@dimen/small_margin"
                     android:layout_toStartOf="@+id/sign_in_button"
-                    android:layout_toLeftOf="@id/sign_in_button"
-                    android:text="Forgot Password?" />
+                    android:text="@string/forgot_password" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -159,40 +155,40 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="@dimen/top_margin"
                 android:fontFamily="@font/quicksand"
-                android:text="Quick Questions"
+                android:text="@string/quick_questions"
                 android:textColor="@color/textColorPrimary"
-                android:textSize="36sp" />
+                android:textSize="@dimen/title_text_size" />
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="@dimen/top_margin"
                 android:background="@android:color/white"
-                android:elevation="8dp"
-                app:cardCornerRadius="8dp">
+                android:elevation="@dimen/small_margin"
+                app:cardCornerRadius="@dimen/small_margin">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="@dimen/small_margin"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:layout_marginRight="@dimen/small_margin"
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Base.Widget.MaterialComponents.TextInputLayout."
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="E-mail"
+                        android:hint="@string/e_mail"
                         app:startIconDrawable="@drawable/ic_mail">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -206,7 +202,7 @@
                         style="@style/Base.Widget.MaterialComponents.TextInputLayout."
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         app:startIconDrawable="@drawable/ic_lock"
                         app:endIconMode="password_toggle">
 
@@ -221,9 +217,9 @@
                         style="@style/Base.Widget.MaterialComponents.TextInputLayout."
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Re-Password"
+                        android:hint="@string/re_password"
                         app:errorEnabled="true"
-                        android:paddingBottom="8dp"
+                        android:paddingBottom="@dimen/small_padding"
                         app:startIconDrawable="@drawable/ic_lock"
                         app:endIconMode="password_toggle">
 
@@ -239,11 +235,11 @@
             <Button
                 android:id="@+id/sign_up_button"
                 style="@style/Widget.QuickQuestion.Button"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/large_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:text="Sign Up" />
+                android:text="@string/sign_up" />
         </LinearLayout>
     </LinearLayout>
 
