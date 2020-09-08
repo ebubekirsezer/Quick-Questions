@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="18dp"
         android:orientation="vertical">
         <RelativeLayout
             android:layout_marginTop="72dp"
@@ -60,8 +61,6 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_marginTop="48dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
@@ -104,5 +103,29 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/sign_in_button"
+                style="@style/Widget.QuickQuestion.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="Sign In"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cancel_button"
+                style="@style/Widget.QuickQuestion.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_toStartOf="@+id/sign_in_button"
+                android:layout_toLeftOf="@id/sign_in_button"
+                android:text="Forgot Password?"/>
+        </RelativeLayout>
     </LinearLayout>
 </ScrollView>

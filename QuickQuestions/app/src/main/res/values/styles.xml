@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -17,5 +17,15 @@
 
     <style name="Base.Widget.MaterialComponents.TextInputLayout.HintText" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+
+    <style name="Widget.QuickQuestion.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/textColorPrimary</item>
+    </style>
+
+    <style name="Widget.QuickQuestion.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="backgroundTint">@color/textColorPrimary</item>
     </style>
 </resources>
