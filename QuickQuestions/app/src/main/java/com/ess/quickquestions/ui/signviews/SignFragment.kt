@@ -49,6 +49,9 @@ class SignFragment : Fragment() {
             horizontal_sign_in_line.setBackgroundColor(resources.getColor(R.color.textColorPrimary))
             button_sign_up.setTextColor(resources.getColor(R.color.textGreyColor))
             horizontal_sign_up_line.setBackgroundColor(resources.getColor(R.color.textGreyColor))
+
+            linear_layout_sign_in.visibility = View.VISIBLE
+            linear_layout_sign_up.visibility = View.GONE
         }
 
         button_sign_up.setOnClickListener {
@@ -56,6 +59,9 @@ class SignFragment : Fragment() {
             horizontal_sign_in_line.setBackgroundColor(resources.getColor(R.color.textGreyColor))
             button_sign_up.setTextColor(resources.getColor(R.color.textColorPrimary))
             horizontal_sign_up_line.setBackgroundColor(resources.getColor(R.color.textColorPrimary))
+
+            linear_layout_sign_in.visibility = View.GONE
+            linear_layout_sign_up.visibility = View.VISIBLE
         }
 
         super.onViewCreated(view, savedInstanceState)
