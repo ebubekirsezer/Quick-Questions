@@ -25,8 +25,11 @@ class SignFragment : Fragment() {
 
         binding.viewModel = viewModel
 
+        //Input text click listener
         viewModel.onTextKeyListener(binding.signInEmailText,binding.signInEmailInput,binding.signInPasswordText,binding.signInPasswordInput)
 
+
+        //Sign In Button Click Listener
         binding.signInButton.setOnClickListener {
             viewModel.onSignInClicked(binding.signInEmailText,binding.signInEmailInput,binding.signInPasswordText,binding.signInPasswordInput)
         }

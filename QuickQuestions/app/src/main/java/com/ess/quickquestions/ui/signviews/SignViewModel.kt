@@ -11,7 +11,10 @@ class SignViewModel : ViewModel() {
     var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
 
+    //Input Text Change Control
     fun onTextKeyListener(emailText: TextInputEditText?, emailInput: TextInputLayout?, passwordText: TextInputEditText?, passwordInput: TextInputLayout?){
+
+        //Sign In Email Text change
         emailText?.setOnKeyListener { view, i, keyEvent ->
             if(isEmailValid(emailText,emailInput)){
                 emailInput?.error = null
@@ -19,6 +22,7 @@ class SignViewModel : ViewModel() {
             false
         }
 
+        //Sign In Password Text Change
         passwordText?.setOnKeyListener { view, i, keyEvent ->
             if(isPasswordValid(passwordText,passwordInput)){
                 passwordInput?.error = null
@@ -27,6 +31,7 @@ class SignViewModel : ViewModel() {
         }
     }
 
+    //Sign In Click Event
     fun onSignInClicked(emailText: TextInputEditText?, emailInput: TextInputLayout?, passwordText: TextInputEditText?, passwordInput: TextInputLayout?) {
 
         val isMailValid = isEmailValid(emailText,emailInput)
@@ -37,6 +42,7 @@ class SignViewModel : ViewModel() {
         println("Password Validation: " + isPasswordValid)
     }
 
+    //Email Validation Control
     private fun isEmailValid(email: TextInputEditText?,emailInput: TextInputLayout?): Boolean {
 
         return if (email?.text.isNullOrEmpty()) {
@@ -53,6 +59,7 @@ class SignViewModel : ViewModel() {
         }
     }
 
+    //Password Validation Control
     private fun isPasswordValid(password: TextInputEditText?, passwordInput: TextInputLayout?): Boolean {
         return if(password?.text.isNullOrEmpty()){
             passwordInput?.error = "Bu alan boş bırakılamaz"
