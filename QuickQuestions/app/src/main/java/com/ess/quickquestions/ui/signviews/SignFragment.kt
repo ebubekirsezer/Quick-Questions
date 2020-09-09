@@ -6,22 +6,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.ess.quickquestions.R
+import com.ess.quickquestions.databinding.FragmentSignBinding
 import kotlinx.android.synthetic.main.fragment_sign.*
 
 class SignFragment : Fragment() {
 
-    var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+    private lateinit var viewModel : SignViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
+        val binding = FragmentSignBinding.inflate((inflater))
+        viewModel = ViewModelProvider(this).get(SignViewModel::class.java)
 
+        binding.viewModel = viewModel
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign, container, false)
+        viewModel.onTextKeyListener(binding.signInEmailText,binding.signInEmailInput,binding.signInPasswordText,binding.signInPasswordInput)
+
+        binding.signInButton.setOnClickListener {
+            viewModel.onSignInClicked(binding.signInEmailText,binding.signInEmailInput,binding.signInPasswordText,binding.signInPasswordInput)
+        }
+
+        return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,16 +65,8 @@ class SignFragment : Fragment() {
    }
 
 
-    //Password Control
-    private fun isPasswordValid(text: Editable?): Boolean{
-        return text != null && text.length >= 8
-    }
 
     private fun isPasswordMatch(password: Editable?, repassword: Editable?): Boolean{
         return password == repassword
-    }
-
-    private fun isEmailValid(email: Editable?) : Boolean{
-        return email != null && email.trim().matches(Regex(emailPattern))
     }
 }
