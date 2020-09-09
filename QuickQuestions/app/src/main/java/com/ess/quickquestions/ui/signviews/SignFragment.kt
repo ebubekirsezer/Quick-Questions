@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_sign.*
 
 class SignFragment : Fragment() {
 
-    private lateinit var viewModel : SignViewModel
+    private lateinit var viewModel: SignViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,12 +26,40 @@ class SignFragment : Fragment() {
         binding.viewModel = viewModel
 
         //Input text click listener
-        viewModel.onTextKeyListener(binding.signInEmailText,binding.signInEmailInput,binding.signInPasswordText,binding.signInPasswordInput)
+        viewModel.onTextKeyListener(
+            binding.signInEmailText,
+            binding.signInEmailInput,
+            binding.signInPasswordText,
+            binding.signInPasswordInput,
+            binding.signUpEmailText,
+            binding.signUpEmailInput,
+            binding.signUpPasswordText,
+            binding.signUpPasswordInput,
+            binding.signUpRepasswordText,
+            binding.signUpRepasswordInput
+        )
 
 
         //Sign In Button Click Listener
         binding.signInButton.setOnClickListener {
-            viewModel.onSignInClicked(binding.signInEmailText,binding.signInEmailInput,binding.signInPasswordText,binding.signInPasswordInput)
+            viewModel.onSignInClicked(
+                binding.signInEmailText,
+                binding.signInEmailInput,
+                binding.signInPasswordText,
+                binding.signInPasswordInput
+            )
+        }
+
+        //Sign Up Button Click Listener
+        binding.signUpButton.setOnClickListener {
+            viewModel.onSignUpClicked(
+                binding.signUpEmailText,
+                binding.signUpEmailInput,
+                binding.signUpPasswordText,
+                binding.signUpPasswordInput,
+                binding.signUpRepasswordText,
+                binding.signUpRepasswordInput
+            )
         }
 
         return binding.root
@@ -45,31 +73,30 @@ class SignFragment : Fragment() {
     }
 
     //Sign In and Sign Up tab click events
-   private fun onTabSignClick(){
-       button_sign_in.setOnClickListener {
-           button_sign_in.setTextColor(resources.getColor(R.color.textColorPrimary))
-           horizontal_sign_in_line.setBackgroundColor(resources.getColor(R.color.textColorPrimary))
-           button_sign_up.setTextColor(resources.getColor(R.color.textGreyColor))
-           horizontal_sign_up_line.setBackgroundColor(resources.getColor(R.color.textGreyColor))
+    private fun onTabSignClick() {
+        button_sign_in.setOnClickListener {
+            button_sign_in.setTextColor(resources.getColor(R.color.textColorPrimary))
+            horizontal_sign_in_line.setBackgroundColor(resources.getColor(R.color.textColorPrimary))
+            button_sign_up.setTextColor(resources.getColor(R.color.textGreyColor))
+            horizontal_sign_up_line.setBackgroundColor(resources.getColor(R.color.textGreyColor))
 
-           linear_layout_sign_in.visibility = View.VISIBLE
-           linear_layout_sign_up.visibility = View.GONE
-       }
+            linear_layout_sign_in.visibility = View.VISIBLE
+            linear_layout_sign_up.visibility = View.GONE
+        }
 
-       button_sign_up.setOnClickListener {
-           button_sign_in.setTextColor(resources.getColor(R.color.textGreyColor))
-           horizontal_sign_in_line.setBackgroundColor(resources.getColor(R.color.textGreyColor))
-           button_sign_up.setTextColor(resources.getColor(R.color.textColorPrimary))
-           horizontal_sign_up_line.setBackgroundColor(resources.getColor(R.color.textColorPrimary))
+        button_sign_up.setOnClickListener {
+            button_sign_in.setTextColor(resources.getColor(R.color.textGreyColor))
+            horizontal_sign_in_line.setBackgroundColor(resources.getColor(R.color.textGreyColor))
+            button_sign_up.setTextColor(resources.getColor(R.color.textColorPrimary))
+            horizontal_sign_up_line.setBackgroundColor(resources.getColor(R.color.textColorPrimary))
 
-           linear_layout_sign_in.visibility = View.GONE
-           linear_layout_sign_up.visibility = View.VISIBLE
-       }
-   }
+            linear_layout_sign_in.visibility = View.GONE
+            linear_layout_sign_up.visibility = View.VISIBLE
+        }
+    }
 
 
-
-    private fun isPasswordMatch(password: Editable?, repassword: Editable?): Boolean{
+    private fun isPasswordMatch(password: Editable?, repassword: Editable?): Boolean {
         return password == repassword
     }
 }

@@ -200,6 +200,7 @@
                         android:orientation="vertical">
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/sign_up_email_input"
                             style="@style/Base.Widget.MaterialComponents.TextInputLayout."
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -207,6 +208,7 @@
                             app:startIconDrawable="@drawable/ic_mail">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/sign_up_email_text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="textEmailAddress"
@@ -214,6 +216,7 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/sign_up_password_input"
                             style="@style/Base.Widget.MaterialComponents.TextInputLayout."
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -222,6 +225,7 @@
                             app:startIconDrawable="@drawable/ic_lock">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/sign_up_password_text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="textPassword"
@@ -229,6 +233,7 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/sign_up_repassword_input"
                             style="@style/Base.Widget.MaterialComponents.TextInputLayout."
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -239,6 +244,7 @@
                             app:startIconDrawable="@drawable/ic_lock">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/sign_up_repassword_text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="textPassword"
