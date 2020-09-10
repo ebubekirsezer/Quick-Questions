@@ -14,13 +14,20 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+enum class SignStatus {LOADING, ERROR, DONE}
+
 class SignViewModel : ViewModel() {
 
     var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
+    private val _status = MutableLiveData<SignStatus>()
+    val status : LiveData<SignStatus>
+        get() = _status
+
     private val _loadingProcess = MutableLiveData<Boolean?>()
     val loadingProcess : LiveData<Boolean?>
         get() = _loadingProcess
+
 
 
     //Sign In Click Event
@@ -34,7 +41,7 @@ class SignViewModel : ViewModel() {
 
         val isMailValid = isEmailValid(emailText, emailInput)
         val isPasswordValid = isPasswordValid(passwordText, passwordInput)
-        
+
         _loadingProcess.value = false
     }
 

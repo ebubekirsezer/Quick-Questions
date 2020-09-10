@@ -51,5 +51,9 @@ dependencies {
     //Firebase Auth
     implementation "com.google.firebase:firebase-auth-ktx:$firebase_auth"
 
+    //Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
+
 
 }
