@@ -2,7 +2,9 @@ package com.ess.quickquestions.ui.signviews
 
 import android.text.Editable
 import android.widget.Toast
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
+import com.ess.quickquestions.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -59,7 +61,7 @@ class SignViewModel : ViewModel() {
 
         //Sign Up Re-Password Text change
         signUpRePasswordText?.setOnKeyListener { view, i, keyEvent ->
-            if (isPasswordMatch(signUpPasswordText,signUpRePasswordText, signUpRePasswordInput)) {
+            if (isPasswordMatch(signUpPasswordText, signUpRePasswordText, signUpRePasswordInput)) {
                 signUpRePasswordInput?.error = null
             }
             false
@@ -76,10 +78,6 @@ class SignViewModel : ViewModel() {
 
         val isMailValid = isEmailValid(emailText, emailInput)
         val isPasswordValid = isPasswordValid(passwordText, passwordInput)
-
-
-        println("Email Validation: " + isMailValid)
-        println("Password Validation: " + isPasswordValid)
     }
 
     //Sign Up Click Event
@@ -90,28 +88,24 @@ class SignViewModel : ViewModel() {
         passwordInput: TextInputLayout?,
         repasswordText: TextInputEditText?,
         repasswordInput: TextInputLayout?
-    ){
-        val isMailValid = isEmailValid(emailText,emailInput)
-        val isPasswordValid= isPasswordValid(passwordText,passwordInput)
-        val isPasswordMatch = isPasswordMatch(passwordText,repasswordText,repasswordInput)
-
-        println("Email: " + isMailValid)
-        println("Password: " + isPasswordValid)
-        println("Password Match: " + isPasswordMatch)
+    ) {
+        val isMailValid = isEmailValid(emailText, emailInput)
+        val isPasswordValid = isPasswordValid(passwordText, passwordInput)
+        val isPasswordMatch = isPasswordMatch(passwordText, repasswordText, repasswordInput)
     }
 
     //Email Validation Control
     private fun isEmailValid(email: TextInputEditText?, emailInput: TextInputLayout?): Boolean {
 
         return if (email?.text.isNullOrEmpty()) {
-            emailInput?.error = "Bu alan boş bırakılamaz"
+            emailInput?.error = "This field cannot be empty"
             false
         } else {
             if (email?.text != null && email.text!!.trim().matches(Regex(emailPattern))) {
                 emailInput?.error = null
                 true
             } else {
-                emailInput?.error = "Email bilgilerini doğru girilmeli"
+                emailInput?.error = "Email information must be true"
                 false
             }
         }
@@ -123,7 +117,7 @@ class SignViewModel : ViewModel() {
         passwordInput: TextInputLayout?
     ): Boolean {
         return if (password?.text.isNullOrEmpty()) {
-            passwordInput?.error = "Bu alan boş bırakılamaz"
+            passwordInput?.error = "This field cannot be empty"
             //password?.error = "Bu alan boş bırakılamaz"
             false
         } else {
@@ -131,7 +125,7 @@ class SignViewModel : ViewModel() {
                 passwordInput?.error = null
                 true
             } else {
-                passwordInput?.error = "Şifre uzunluğu en az 8 karakter olmalıdır"
+                passwordInput?.error = "Password length must be at least 8 character"
                 false
             }
         }
@@ -143,14 +137,14 @@ class SignViewModel : ViewModel() {
         repasswordText: TextInputEditText?,
         repasswordInput: TextInputLayout?
     ): Boolean {
-        if(repasswordText?.text.isNullOrEmpty()){
-            repasswordInput?.error = "Bu alan boş bırakılmamalıdır"
+        if (repasswordText?.text.isNullOrEmpty()) {
+            repasswordInput?.error = "This field cannot be empty"
             return false
-        } else{
-            if(passwordText?.text?.trim().toString() != repasswordText?.text?.trim().toString()){
-                repasswordInput?.error = "Şifreler uyuşmamaktadır"
+        } else {
+            if (passwordText?.text?.trim().toString() != repasswordText?.text?.trim().toString()) {
+                repasswordInput?.error = "Passwords not match"
                 return false
-            } else{
+            } else {
                 repasswordInput?.error = null
                 return true
             }
