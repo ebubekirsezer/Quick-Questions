@@ -5,6 +5,7 @@ buildscript {
         kotlin_version = "1.4.0"
         version_lifecycle_extensions = "2.2.0"
         lottieVersion = "3.4.2"
+        firebase_auth = "19.3.2"
     }
 
     repositories {

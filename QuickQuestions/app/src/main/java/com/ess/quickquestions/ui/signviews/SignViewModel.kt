@@ -9,6 +9,10 @@ import androidx.lifecycle.ViewModel
 import com.ess.quickquestions.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class SignViewModel : ViewModel() {
 
@@ -19,61 +23,6 @@ class SignViewModel : ViewModel() {
         get() = _loadingProcess
 
 
-    //Input Text Change Control
-    fun onTextKeyListener(
-        emailText: TextInputEditText?,
-        emailInput: TextInputLayout?,
-        passwordText: TextInputEditText?,
-        passwordInput: TextInputLayout?,
-        signUpEmailText: TextInputEditText?,
-        signUpEmailInput: TextInputLayout?,
-        signUpPasswordText: TextInputEditText?,
-        signUpPasswordInput: TextInputLayout?,
-        signUpRePasswordText: TextInputEditText?,
-        signUpRePasswordInput: TextInputLayout?,
-    ) {
-
-        //Sign In Email Text change
-        emailText?.setOnKeyListener { view, i, keyEvent ->
-            if (isEmailValid(emailText, emailInput)) {
-                emailInput?.error = null
-            }
-            false
-        }
-
-        //Sign In Password Text Change
-        passwordText?.setOnKeyListener { view, i, keyEvent ->
-            if (isPasswordValid(passwordText, passwordInput)) {
-                passwordInput?.error = null
-            }
-            false
-        }
-
-        //Sign Up Email Text change
-        signUpEmailText?.setOnKeyListener { view, i, keyEvent ->
-            if (isEmailValid(signUpEmailText, signUpEmailInput)) {
-                signUpEmailInput?.error = null
-            }
-            false
-        }
-
-        //Sign Up Password Text change
-        signUpPasswordText?.setOnKeyListener { view, i, keyEvent ->
-            if (isPasswordValid(signUpPasswordText, signUpPasswordInput)) {
-                signUpPasswordInput?.error = null
-            }
-            false
-        }
-
-        //Sign Up Re-Password Text change
-        signUpRePasswordText?.setOnKeyListener { view, i, keyEvent ->
-            if (isPasswordMatch(signUpPasswordText, signUpRePasswordText, signUpRePasswordInput)) {
-                signUpRePasswordInput?.error = null
-            }
-            false
-        }
-    }
-
     //Sign In Click Event
     fun onSignInClicked(
         emailText: TextInputEditText?,
@@ -81,12 +30,12 @@ class SignViewModel : ViewModel() {
         passwordText: TextInputEditText?,
         passwordInput: TextInputLayout?
     ) {
+        _loadingProcess.value = true
 
         val isMailValid = isEmailValid(emailText, emailInput)
         val isPasswordValid = isPasswordValid(passwordText, passwordInput)
-
-        _loadingProcess.value = true
-
+        
+        _loadingProcess.value = false
     }
 
     //Sign Up Click Event
@@ -157,6 +106,61 @@ class SignViewModel : ViewModel() {
                 repasswordInput?.error = null
                 return true
             }
+        }
+    }
+
+    //Input Text Change Control
+    fun onTextKeyListener(
+        emailText: TextInputEditText?,
+        emailInput: TextInputLayout?,
+        passwordText: TextInputEditText?,
+        passwordInput: TextInputLayout?,
+        signUpEmailText: TextInputEditText?,
+        signUpEmailInput: TextInputLayout?,
+        signUpPasswordText: TextInputEditText?,
+        signUpPasswordInput: TextInputLayout?,
+        signUpRePasswordText: TextInputEditText?,
+        signUpRePasswordInput: TextInputLayout?,
+    ) {
+
+        //Sign In Email Text change
+        emailText?.setOnKeyListener { view, i, keyEvent ->
+            if (isEmailValid(emailText, emailInput)) {
+                emailInput?.error = null
+            }
+            false
+        }
+
+        //Sign In Password Text Change
+        passwordText?.setOnKeyListener { view, i, keyEvent ->
+            if (isPasswordValid(passwordText, passwordInput)) {
+                passwordInput?.error = null
+            }
+            false
+        }
+
+        //Sign Up Email Text change
+        signUpEmailText?.setOnKeyListener { view, i, keyEvent ->
+            if (isEmailValid(signUpEmailText, signUpEmailInput)) {
+                signUpEmailInput?.error = null
+            }
+            false
+        }
+
+        //Sign Up Password Text change
+        signUpPasswordText?.setOnKeyListener { view, i, keyEvent ->
+            if (isPasswordValid(signUpPasswordText, signUpPasswordInput)) {
+                signUpPasswordInput?.error = null
+            }
+            false
+        }
+
+        //Sign Up Re-Password Text change
+        signUpRePasswordText?.setOnKeyListener { view, i, keyEvent ->
+            if (isPasswordMatch(signUpPasswordText, signUpRePasswordText, signUpRePasswordInput)) {
+                signUpRePasswordInput?.error = null
+            }
+            false
         }
     }
 }

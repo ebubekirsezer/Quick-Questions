@@ -48,5 +48,8 @@ dependencies {
     //Lottie Animation
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
+    //Firebase Auth
+    implementation "com.google.firebase:firebase-auth-ktx:$firebase_auth"
+
 
 }

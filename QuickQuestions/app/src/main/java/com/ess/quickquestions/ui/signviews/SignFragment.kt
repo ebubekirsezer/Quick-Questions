@@ -66,7 +66,10 @@ class SignFragment : Fragment() {
         viewModel.loadingProcess.observe(viewLifecycleOwner, Observer {
             if(it == true){
                 binding.loadingAnimationInclude.visibility = View.VISIBLE
+            } else{
+                binding.loadingAnimationInclude.visibility = View.GONE
             }
+
         })
 
         return binding.root
