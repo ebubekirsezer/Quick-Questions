@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ess.quickquestions.R
 import com.ess.quickquestions.databinding.FragmentSignBinding
@@ -46,7 +47,7 @@ class SignFragment : Fragment() {
                 binding.signInEmailText,
                 binding.signInEmailInput,
                 binding.signInPasswordText,
-                binding.signInPasswordInput
+                binding.signInPasswordInput,
             )
         }
 
@@ -61,6 +62,12 @@ class SignFragment : Fragment() {
                 binding.signUpRepasswordInput
             )
         }
+
+        viewModel.loadingProcess.observe(viewLifecycleOwner, Observer {
+            if(it == true){
+                binding.loadingAnimationInclude.visibility = View.VISIBLE
+            }
+        })
 
         return binding.root
 

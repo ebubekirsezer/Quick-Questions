@@ -45,4 +45,8 @@ dependencies {
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
 
+    //Lottie Animation
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+
 }

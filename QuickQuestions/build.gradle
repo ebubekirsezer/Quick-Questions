@@ -4,6 +4,7 @@ buildscript {
     ext{
         kotlin_version = "1.4.0"
         version_lifecycle_extensions = "2.2.0"
+        lottieVersion = "3.4.2"
     }
 
     repositories {

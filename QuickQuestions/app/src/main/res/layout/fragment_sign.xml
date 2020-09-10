@@ -5,22 +5,29 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.ess.quickquestions.ui.signviews.SignViewModel" />
     </data>
 
-    <ScrollView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
-        tools:context=".ui.signviews.SignFragment">
+        android:padding="@dimen/large_padding">
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="start"
             android:orientation="vertical"
-            android:padding="@dimen/large_padding">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -44,7 +51,7 @@
                     android:id="@+id/horizontal_sign_in_line"
                     android:layout_width="150dp"
                     android:layout_height="2dp"
-                    android:layout_alignParentBottom="true"
+                    android:layout_alignBottom="@id/button_sign_in"
                     android:background="@color/textColorPrimary" />
 
                 <Button
@@ -65,7 +72,7 @@
                     android:id="@+id/horizontal_sign_up_line"
                     android:layout_width="150dp"
                     android:layout_height="2dp"
-                    android:layout_alignParentBottom="true"
+                    android:layout_alignBottom="@id/button_sign_up"
                     android:layout_toEndOf="@id/horizontal_sign_in_line"
                     android:background="@color/textGreyColor" />
 
@@ -264,7 +271,16 @@
             </LinearLayout>
         </LinearLayout>
 
-
-    </ScrollView>
+        <include
+            android:id="@+id/loadingAnimationInclude"
+            android:visibility="gone"
+            layout="@layout/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

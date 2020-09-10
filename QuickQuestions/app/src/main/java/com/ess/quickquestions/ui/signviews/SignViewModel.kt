@@ -3,6 +3,8 @@ package com.ess.quickquestions.ui.signviews
 import android.text.Editable
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ess.quickquestions.R
 import com.google.android.material.textfield.TextInputEditText
@@ -11,6 +13,10 @@ import com.google.android.material.textfield.TextInputLayout
 class SignViewModel : ViewModel() {
 
     var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+
+    private val _loadingProcess = MutableLiveData<Boolean?>()
+    val loadingProcess : LiveData<Boolean?>
+        get() = _loadingProcess
 
 
     //Input Text Change Control
@@ -78,6 +84,9 @@ class SignViewModel : ViewModel() {
 
         val isMailValid = isEmailValid(emailText, emailInput)
         val isPasswordValid = isPasswordValid(passwordText, passwordInput)
+
+        _loadingProcess.value = true
+
     }
 
     //Sign Up Click Event
