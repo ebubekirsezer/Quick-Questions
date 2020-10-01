@@ -47,7 +47,17 @@ class SignViewModel : ViewModel() {
         val isMailValid = isEmailValid(emailText, emailInput)
         val isPasswordValid = isPasswordValid(passwordText, passwordInput)
 
-        _loadingProcess.value = false
+        if(isMailValid && isPasswordValid){
+            auth.signInWithEmailAndPassword(emailText?.text.toString(),passwordText?.text.toString()).addOnCompleteListener {
+                if(it.isSuccessful){
+                    _loadingProcess.value = false
+                    println("Successfully Login")
+                } else{
+                    _loadingProcess.value = false
+                    println("Unlucky")
+                }
+            }
+        }
     }
 
     //Sign Up Click Event
