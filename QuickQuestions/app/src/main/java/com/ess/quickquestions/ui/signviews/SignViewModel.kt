@@ -59,21 +59,22 @@ class SignViewModel : ViewModel() {
         repasswordText: TextInputEditText?,
         repasswordInput: TextInputLayout?
     ) {
+        _loadingProcess.value = true
         val isMailValid = isEmailValid(emailText, emailInput)
         val isPasswordValid = isPasswordValid(passwordText, passwordInput)
         val isPasswordMatch = isPasswordMatch(passwordText, repasswordText, repasswordInput)
 
         if(isMailValid && isPasswordValid && isPasswordMatch){
 
-            auth.createUserWithEmailAndPassword("ebubekir@gmail.com","123456789").addOnCompleteListener {
+            auth.createUserWithEmailAndPassword(emailText?.text.toString(), passwordText?.text.toString()).addOnCompleteListener {
                 if(it.isSuccessful){
-                    println("Harika")
+                    _loadingProcess.value = false
+                    println("Awesome")
                 } else{
+                    _loadingProcess.value = false
                     println("Try again")
                 }
             }
-
-            println(emailText?.text.toString())
         }
     }
 
