@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ess.quickquestions.R
+import com.ess.quickquestions.repository.FirebaseRepository
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -18,6 +19,8 @@ enum class SignStatus {LOADING, ERROR, DONE}
 
 class SignViewModel : ViewModel() {
 
+    private lateinit var auth: FirebaseAuth
+
     var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
     private val _status = MutableLiveData<SignStatus>()
@@ -28,7 +31,9 @@ class SignViewModel : ViewModel() {
     val loadingProcess : LiveData<Boolean?>
         get() = _loadingProcess
 
-
+    init {
+        auth = Firebase.auth
+    }
 
     //Sign In Click Event
     fun onSignInClicked(
@@ -57,6 +62,19 @@ class SignViewModel : ViewModel() {
         val isMailValid = isEmailValid(emailText, emailInput)
         val isPasswordValid = isPasswordValid(passwordText, passwordInput)
         val isPasswordMatch = isPasswordMatch(passwordText, repasswordText, repasswordInput)
+
+        if(isMailValid && isPasswordValid && isPasswordMatch){
+
+            auth.createUserWithEmailAndPassword("ebubekir@gmail.com","123456789").addOnCompleteListener {
+                if(it.isSuccessful){
+                    println("Harika")
+                } else{
+                    println("Try again")
+                }
+            }
+
+            println(emailText?.text.toString())
+        }
     }
 
     //Email Validation Control

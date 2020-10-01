@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "15569318516",
+    "firebase_url": "https://quick-questions-f7d75.firebaseio.com",
+    "project_id": "quick-questions-f7d75",
+    "storage_bucket": "quick-questions-f7d75.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15569318516:android:032f15dcdfa15bb8969721",
+        "android_client_info": {
+          "package_name": "com.ess.quickquestions"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "15569318516-vgu7s9dgochtki6cm8tvq6u26rle56t1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9zfdo_97aPT1cOnS0bkmPhinAofkJbHY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "15569318516-vgu7s9dgochtki6cm8tvq6u26rle56t1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

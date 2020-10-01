@@ -10,11 +10,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ess.quickquestions.R
 import com.ess.quickquestions.databinding.FragmentSignBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_sign.*
 
 class SignFragment : Fragment() {
 
     private lateinit var viewModel: SignViewModel
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +27,8 @@ class SignFragment : Fragment() {
 
         val binding = FragmentSignBinding.inflate((inflater))
         viewModel = ViewModelProvider(this).get(SignViewModel::class.java)
+
+        auth = Firebase.auth
 
         binding.viewModel = viewModel
 
@@ -53,6 +59,14 @@ class SignFragment : Fragment() {
 
         //Sign Up Button Click Listener
         binding.signUpButton.setOnClickListener {
+/*            auth.createUserWithEmailAndPassword("ebubekirssezer@gmail.com","12345678").addOnCompleteListener {
+                if (it.isSuccessful){
+                    println("Başarılı")
+                }else {
+                    println("hata")
+                }
+            }*/
+
             viewModel.onSignUpClicked(
                 binding.signUpEmailText,
                 binding.signUpEmailInput,
@@ -78,7 +92,7 @@ class SignFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         onTabSignClick()
-
+        auth = Firebase.auth
         super.onViewCreated(view, savedInstanceState)
     }
 
