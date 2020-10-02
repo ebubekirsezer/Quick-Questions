@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.ess.quickquestions.R
 import com.ess.quickquestions.databinding.FragmentSignBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -84,6 +85,14 @@ class SignFragment : Fragment() {
                 binding.loadingAnimationInclude.visibility = View.GONE
             }
 
+        })
+
+        viewModel.navigateToSignIn.observe(viewLifecycleOwner, Observer {navigate ->
+            if(navigate){
+                val navController = findNavController()
+                navController.navigate(SignFragmentDirections.actionSignFragmentToHomeFragment())
+                viewModel.onNavigatedToSignIn()
+            }
         })
 
         return binding.root

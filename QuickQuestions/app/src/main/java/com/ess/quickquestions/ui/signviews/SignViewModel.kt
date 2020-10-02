@@ -31,6 +31,10 @@ class SignViewModel : ViewModel() {
     val loadingProcess : LiveData<Boolean?>
         get() = _loadingProcess
 
+    private val _navigateToSignIn = MutableLiveData<Boolean>()
+    val navigateToSignIn : LiveData<Boolean>
+        get() = _navigateToSignIn
+
     init {
         auth = Firebase.auth
     }
@@ -50,6 +54,7 @@ class SignViewModel : ViewModel() {
         if(isMailValid && isPasswordValid){
             auth.signInWithEmailAndPassword(emailText?.text.toString(),passwordText?.text.toString()).addOnCompleteListener {
                 if(it.isSuccessful){
+                    _navigateToSignIn.value = true
                     _loadingProcess.value = false
                     println("Successfully Login")
                 } else{
@@ -58,6 +63,10 @@ class SignViewModel : ViewModel() {
                 }
             }
         }
+    }
+
+    fun onNavigatedToSignIn(){
+        _navigateToSignIn.value = false
     }
 
     //Sign Up Click Event
