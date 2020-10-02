@@ -27,4 +27,13 @@
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="backgroundTint">@color/textColorPrimary</item>
     </style>
+
+    <style name="Splash" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <!--        for full screen activity-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 </resources>
