@@ -95,6 +95,14 @@ class SignFragment : Fragment() {
             }
         })
 
+        viewModel.navigateToSignUp.observe(viewLifecycleOwner, Observer { navigate ->
+            if(navigate){
+                val navController = findNavController()
+                navController.navigate(SignFragmentDirections.actionSignFragmentToHomeFragment())
+                viewModel.onNavigatedToSignUp()
+            }
+        })
+
         return binding.root
 
     }

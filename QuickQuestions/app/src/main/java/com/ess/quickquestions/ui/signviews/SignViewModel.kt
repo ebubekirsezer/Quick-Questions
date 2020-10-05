@@ -35,6 +35,10 @@ class SignViewModel : ViewModel() {
     val navigateToSignIn : LiveData<Boolean>
         get() = _navigateToSignIn
 
+    private val _navigateToSignUp = MutableLiveData<Boolean>()
+    val navigateToSignUp : LiveData<Boolean>
+        get() = _navigateToSignUp
+
     init {
         auth = Firebase.auth
     }
@@ -88,6 +92,7 @@ class SignViewModel : ViewModel() {
             auth.createUserWithEmailAndPassword(emailText?.text.toString(), passwordText?.text.toString()).addOnCompleteListener {
                 if(it.isSuccessful){
                     _loadingProcess.value = false
+                    _navigateToSignUp.value = true
                     println("Awesome")
                 } else{
                     _loadingProcess.value = false
@@ -95,6 +100,10 @@ class SignViewModel : ViewModel() {
                 }
             }
         }
+    }
+
+    fun onNavigatedToSignUp(){
+        _navigateToSignUp.value = false
     }
 
     //Email Validation Control
