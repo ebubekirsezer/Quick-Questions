@@ -26,7 +26,7 @@ class SignFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentSignBinding.inflate((inflater))
+        val binding = FragmentSignBinding.inflate(inflater)
         viewModel = ViewModelProvider(this).get(SignViewModel::class.java)
 
         auth = Firebase.auth
