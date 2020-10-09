@@ -33,11 +33,17 @@ class HomeFragment : Fragment() {
         (activity as AppCompatActivity).setSupportActionBar(binding.root.findViewById(R.id.home_toolbar))
 
 
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.categoricalCardList.layoutManager = layoutManager
+        val categoryLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.categoricalCardList.layoutManager = categoryLayoutManager
 
-        val adapter = CategoryCardListAdapter(viewModel.categoryList)
-        binding.categoricalCardList.adapter = adapter
+        val listLayoutManager = LinearLayoutManager(context)
+        binding.quizList.layoutManager = listLayoutManager
+
+        val categoryAdapter = CategoryCardListAdapter(viewModel.categoryList)
+        binding.categoricalCardList.adapter = categoryAdapter
+
+        val listAdapter =QuizListAdapter(viewModel.categoryList)
+        binding.quizList.adapter = listAdapter
         // Inflate the layout for this fragment
         return binding.root
     }

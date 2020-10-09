@@ -8,15 +8,17 @@
         android:id="@+id/linear_question_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/sign_in_button"
+        android:layout_toStartOf="@id/start_button"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/quiz_list_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kotlin"
             android:textSize="24sp"
             android:textColor="@color/colorPrimaryDark"/>
         <TextView
+            android:id="@+id/quiz_list_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Develop with Kotlin"
@@ -25,7 +27,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/sign_in_button"
+        android:id="@+id/start_button"
         style="@style/Question_List_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
