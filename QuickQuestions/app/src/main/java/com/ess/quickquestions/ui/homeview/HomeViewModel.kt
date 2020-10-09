@@ -4,4 +4,6 @@ import androidx.lifecycle.ViewModel
 
 class HomeViewModel : ViewModel(){
 
+    public val categoryList: ArrayList<String> = arrayListOf("C#","Flutter","Dart","Xamarin")
+
 }
