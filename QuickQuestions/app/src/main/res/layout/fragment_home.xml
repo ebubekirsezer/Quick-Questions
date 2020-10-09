@@ -52,7 +52,7 @@
         <View
             android:id="@+id/view_curved_rectangle"
             android:layout_width="wrap_content"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
             android:background="@drawable/curved_rectangular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,12 +62,30 @@
             android:id="@+id/categorical_card_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="125dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/top_quizzes_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_toolbar"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/top_quizzes_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_margin"
+            android:layout_marginTop="332dp"
+            android:text="Top Quizzes"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/title_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_toolbar" />
-
+            app:layout_constraintTop_toBottomOf="@+id/home_toolbar"
+            app:layout_constraintVertical_bias="0.555" />
         <!-- TODO: Update blank fragment layout -->
 
 
