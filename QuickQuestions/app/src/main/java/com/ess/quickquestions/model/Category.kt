@@ -1,6 +1,11 @@
 package com.ess.quickquestions.model
 
+data class Categories(
+    val categories: List<Category>
+)
+
 data class Category(
+    val id: String,
     val name: String,
     val questions: Questions
 )
