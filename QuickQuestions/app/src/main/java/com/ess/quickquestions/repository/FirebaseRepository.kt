@@ -1,12 +1,14 @@
 package com.ess.quickquestions.repository
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 
 class FirebaseRepository {
 
     private val firebaseAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
+
 
     fun signIn(email: String, password: String) {
         firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {task ->
@@ -17,4 +19,8 @@ class FirebaseRepository {
             }
         }
     }
+
+
+
+
 }

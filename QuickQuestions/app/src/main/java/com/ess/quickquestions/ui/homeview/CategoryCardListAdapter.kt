@@ -32,8 +32,6 @@ class CategoryCardListAdapter(private val postList: ArrayList<String>) : Recycle
     }
 
     override fun onBindViewHolder(holder: RowHolder, position: Int) {
-        println(position)
-
         var colorPosition = position % 5
 
         holder.bind(postList[position],cardColors[colorPosition])

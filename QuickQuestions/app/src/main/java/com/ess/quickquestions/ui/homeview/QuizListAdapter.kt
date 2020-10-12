@@ -27,7 +27,6 @@ class QuizListAdapter(private val postList: ArrayList<String>) : RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: RowHolder, position: Int) {
-        println(position)
         holder.bind(postList[position])
     }
 }
