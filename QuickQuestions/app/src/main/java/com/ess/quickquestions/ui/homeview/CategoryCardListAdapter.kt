@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.category_card_view.view.*
 
 class CategoryCardListAdapter(private val postList: ArrayList<CategoryX>) : RecyclerView.Adapter<CategoryCardListAdapter.RowHolder>() {
 
-    private val cardColors : Array<Int> = arrayOf(Color.MAGENTA,Color.GREEN,Color.YELLOW,Color.RED,Color.BLUE)
+    private val cardColors : Array<Int> = arrayOf(Color.RED,Color.MAGENTA,Color.BLUE,Color.GREEN,Color.DKGRAY)
 
     class RowHolder(view: View) : RecyclerView.ViewHolder(view){
         fun bind(model: CategoryX,color : Int){
