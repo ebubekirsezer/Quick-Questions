@@ -4,7 +4,7 @@
     android:layout_height="150dp"
     android:id="@+id/category_card"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="@dimen/large_margin"
+    android:layout_margin="@dimen/small_margin"
     app:cardBackgroundColor="@color/colorPrimaryDark"
     app:cardElevation="@dimen/small_margin"
     app:cardCornerRadius="10dp">

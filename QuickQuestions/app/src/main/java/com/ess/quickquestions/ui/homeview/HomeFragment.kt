@@ -12,6 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.SnapHelper
 import com.ess.quickquestions.R
 import com.ess.quickquestions.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -64,6 +66,9 @@ class HomeFragment : Fragment() {
             if(isError)
                 Toast.makeText(context,"Error occured",Toast.LENGTH_SHORT).show()
         })
+
+        val snapHelper: SnapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(binding.categoricalCardList)
 
         viewModel.readData()
         // Inflate the layout for this fragment
