@@ -51,6 +51,14 @@ class HomeFragment : Fragment() {
             binding.quizList.adapter = listAdapter
         })
 
+        viewModel.isLoading.observe(viewLifecycleOwner, Observer { visibility ->
+            if(visibility){
+                binding.progressBarCategoryLoad.visibility = View.VISIBLE
+            } else {
+                binding.progressBarCategoryLoad.visibility = View.GONE
+            }
+        })
+
         viewModel.readData()
         // Inflate the layout for this fragment
         return binding.root

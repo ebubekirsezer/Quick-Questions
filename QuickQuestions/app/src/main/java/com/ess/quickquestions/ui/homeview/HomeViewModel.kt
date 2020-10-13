@@ -16,24 +16,14 @@ import kotlin.collections.ArrayList
 
 class HomeViewModel : ViewModel() {
 
-/*    public val categoryList: ArrayList<String> = arrayListOf(
-        "C#",
-        "Flutter",
-        "Dart",
-        "Xamarin",
-        "C#",
-        "Flutter",
-        "Dart",
-        "Xamarin",
-        "C#",
-        "Flutter",
-        "Dart",
-        "Xamarin"
-    )*/
 
     private var _categoryList = MutableLiveData<ArrayList<CategoryX>>()
     val  categoryList : LiveData<ArrayList<CategoryX>>
         get() = _categoryList
+
+    private var _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
 
 /*
     public var categoryList: ArrayList<CategoryX> = arrayListOf()
@@ -43,11 +33,13 @@ class HomeViewModel : ViewModel() {
     val myRef = database.getReference()
 
     fun readData(){
+        _isLoading.value = true
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 val categories = snapshot.getValue(Category::class.java)
                 _categoryList.value = (categories?.category as ArrayList<CategoryX>)!!
+                _isLoading.value = false
 /*
                 categoryList = (categories?.category as ArrayList<CategoryX>?)!!
 */
