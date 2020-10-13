@@ -1,5 +1,6 @@
 package com.ess.quickquestions.ui.homeview
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,9 +26,10 @@ class HomeViewModel : ViewModel() {
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
-/*
-    public var categoryList: ArrayList<CategoryX> = arrayListOf()
-*/
+    private var _isErrorFetchingModels = MutableLiveData<Boolean>()
+    val isErrorFetchingModels : LiveData<Boolean>
+        get() = _isErrorFetchingModels
+
 
     val database = Firebase.database
     val myRef = database.getReference()
@@ -40,13 +42,11 @@ class HomeViewModel : ViewModel() {
                 val categories = snapshot.getValue(Category::class.java)
                 _categoryList.value = (categories?.category as ArrayList<CategoryX>)!!
                 _isLoading.value = false
-/*
-                categoryList = (categories?.category as ArrayList<CategoryX>?)!!
-*/
+                _isErrorFetchingModels.value = false
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                _isErrorFetchingModels.value = true
             }
 
         })
