@@ -1,5 +1,7 @@
 package com.ess.quickquestions.ui.homeview
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ess.quickquestions.model.Category
 import com.ess.quickquestions.model.CategoryX
@@ -29,7 +31,13 @@ class HomeViewModel : ViewModel() {
         "Xamarin"
     )*/
 
+    private var _categoryList = MutableLiveData<ArrayList<CategoryX>>()
+    val  categoryList : LiveData<ArrayList<CategoryX>>
+        get() = _categoryList
+
+/*
     public var categoryList: ArrayList<CategoryX> = arrayListOf()
+*/
 
     val database = Firebase.database
     val myRef = database.getReference()
@@ -39,7 +47,10 @@ class HomeViewModel : ViewModel() {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 val categories = snapshot.getValue(Category::class.java)
+                _categoryList.value = (categories?.category as ArrayList<CategoryX>)!!
+/*
                 categoryList = (categories?.category as ArrayList<CategoryX>?)!!
+*/
             }
 
             override fun onCancelled(error: DatabaseError) {

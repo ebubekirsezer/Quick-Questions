@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,11 +40,16 @@ class HomeFragment : Fragment() {
         val listLayoutManager = LinearLayoutManager(context)
         binding.quizList.layoutManager = listLayoutManager
 
-        val categoryAdapter = CategoryCardListAdapter(viewModel.categoryList)
-        binding.categoricalCardList.adapter = categoryAdapter
 
-        val listAdapter =QuizListAdapter(viewModel.categoryList)
-        binding.quizList.adapter = listAdapter
+
+        println(viewModel.categoryList)
+        viewModel.categoryList.observe(viewLifecycleOwner, Observer {categories ->
+            val categoryAdapter = CategoryCardListAdapter(categories)
+            binding.categoricalCardList.adapter = categoryAdapter
+
+            val listAdapter =QuizListAdapter(categories)
+            binding.quizList.adapter = listAdapter
+        })
 
         viewModel.readData()
         // Inflate the layout for this fragment

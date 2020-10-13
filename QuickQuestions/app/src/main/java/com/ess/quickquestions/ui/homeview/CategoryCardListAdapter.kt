@@ -8,15 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ess.quickquestions.R
+import com.ess.quickquestions.model.CategoryX
 import kotlinx.android.synthetic.main.category_card_view.view.*
 
-class CategoryCardListAdapter(private val postList: ArrayList<String>) : RecyclerView.Adapter<CategoryCardListAdapter.RowHolder>() {
+class CategoryCardListAdapter(private val postList: ArrayList<CategoryX>) : RecyclerView.Adapter<CategoryCardListAdapter.RowHolder>() {
 
     private val cardColors : Array<Int> = arrayOf(Color.MAGENTA,Color.GREEN,Color.YELLOW,Color.RED,Color.BLUE)
 
     class RowHolder(view: View) : RecyclerView.ViewHolder(view){
-        fun bind(title: String,color : Int){
-            itemView.category_card_title.text = title
+        fun bind(model: CategoryX,color : Int){
+            itemView.category_card_title.text = model.name
             itemView.category_card.setCardBackgroundColor(color)
         }
     }

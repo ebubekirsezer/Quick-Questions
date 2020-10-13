@@ -5,14 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ess.quickquestions.R
+import com.ess.quickquestions.model.CategoryX
 import kotlinx.android.synthetic.main.category_card_view.view.*
 import kotlinx.android.synthetic.main.quiz_list_view.view.*
 
-class QuizListAdapter(private val postList: ArrayList<String>) : RecyclerView.Adapter<QuizListAdapter.RowHolder>() {
+class QuizListAdapter(private val postList: ArrayList<CategoryX>) : RecyclerView.Adapter<QuizListAdapter.RowHolder>() {
 
     class RowHolder(view: View) : RecyclerView.ViewHolder(view){
-        fun bind(title: String){
-            itemView.quiz_list_title.text = title
+        fun bind(model: CategoryX){
+            itemView.quiz_list_title.text = model.name
         }
     }
 
