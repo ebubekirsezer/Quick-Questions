@@ -14,6 +14,7 @@ class QuizListAdapter(private val postList: ArrayList<CategoryX>) : RecyclerView
     class RowHolder(view: View) : RecyclerView.ViewHolder(view){
         fun bind(model: CategoryX){
             itemView.quiz_list_title.text = model.name
+            itemView.quiz_list_detail.text ="Develop with " + model.name
         }
     }
 

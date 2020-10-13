@@ -82,7 +82,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="120dp"
                 android:layout_marginEnd="8dp"
-                android:text="Top Quizzes"
+                android:text="@string/top_quizzes"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/title_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -111,8 +111,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-            <!-- TODO: Update blank fragment layout -->
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
