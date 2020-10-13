@@ -28,6 +28,11 @@
         <item name="backgroundTint">@color/textColorPrimary</item>
     </style>
 
+    <style name="Question_List_Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="backgroundTint">@color/colorPrimary</item>
+    </style>
+
     <style name="Splash" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_background</item>
         <!--        for full screen activity-->

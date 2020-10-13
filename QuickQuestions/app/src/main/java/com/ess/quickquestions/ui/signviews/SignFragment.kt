@@ -9,11 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ess.quickquestions.R
 import com.ess.quickquestions.databinding.FragmentSignBinding
+import com.ess.quickquestions.ui.homeview.CategoryCardListAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_sign.*
 
 class SignFragment : Fragment() {
@@ -26,7 +29,7 @@ class SignFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentSignBinding.inflate((inflater))
+        val binding = FragmentSignBinding.inflate(inflater)
         viewModel = ViewModelProvider(this).get(SignViewModel::class.java)
 
         auth = Firebase.auth
@@ -79,16 +82,16 @@ class SignFragment : Fragment() {
         }
 
         viewModel.loadingProcess.observe(viewLifecycleOwner, Observer {
-            if(it == true){
+            if (it == true) {
                 binding.loadingAnimationInclude.visibility = View.VISIBLE
-            } else{
+            } else {
                 binding.loadingAnimationInclude.visibility = View.GONE
             }
 
         })
 
-        viewModel.navigateToSignIn.observe(viewLifecycleOwner, Observer {navigate ->
-            if(navigate){
+        viewModel.navigateToSignIn.observe(viewLifecycleOwner, Observer { navigate ->
+            if (navigate) {
                 val navController = findNavController()
                 navController.navigate(SignFragmentDirections.actionSignFragmentToHomeFragment())
                 viewModel.onNavigatedToSignIn()
@@ -96,12 +99,14 @@ class SignFragment : Fragment() {
         })
 
         viewModel.navigateToSignUp.observe(viewLifecycleOwner, Observer { navigate ->
-            if(navigate){
+            if (navigate) {
                 val navController = findNavController()
                 navController.navigate(SignFragmentDirections.actionSignFragmentToHomeFragment())
                 viewModel.onNavigatedToSignUp()
             }
         })
+
+
 
         return binding.root
 

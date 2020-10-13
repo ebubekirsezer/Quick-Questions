@@ -9,4 +9,7 @@
     <string name="quick_questions">Quick Questions</string>
     <string name="sign_in">Sign in</string>
     <string name="forgot_password">Forgot Password?</string>
+    <string name="welcome">Welcome</string>
+    <string name="start">Start</string>
+    <string name="top_quizzes">Top Quizzes</string>
 </resources>
