@@ -1,19 +1,20 @@
 package com.ess.quickquestions.ui.homeview
 
 import androidx.lifecycle.ViewModel
-import com.ess.quickquestions.model.Categories
 import com.ess.quickquestions.model.Category
-import com.ess.quickquestions.model.Questions
+import com.ess.quickquestions.model.CategoryX
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeViewModel : ViewModel() {
 
-    public val categoryList: ArrayList<String> = arrayListOf(
+/*    public val categoryList: ArrayList<String> = arrayListOf(
         "C#",
         "Flutter",
         "Dart",
@@ -26,41 +27,27 @@ class HomeViewModel : ViewModel() {
         "Flutter",
         "Dart",
         "Xamarin"
-    )
+    )*/
+
+    public var categoryList: ArrayList<CategoryX> = arrayListOf()
 
     val database = Firebase.database
-    val myRef = database.getReference("categories")
+    val myRef = database.getReference()
 
-    fun getCategories() {
-        val userListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val myCategory = arrayListOf<Category>()
-                val category = dataSnapshot.getValue<Array<Category>>()
-                println(category)
+    fun readData(){
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
 
+                val categories = snapshot.getValue(Category::class.java)
+                categoryList = (categories?.category as ArrayList<CategoryX>?)!!
             }
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Getting Post failed, log a message
-                // ...
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
             }
-        }
-        myRef.addValueEventListener(userListener)
+
+        })
     }
-
-/*    fun saveValue(){
-*//*        val user1 = User(name = "Ebubekir", surname = "Sezer")
-        val user2 = User(name = "Ömer", surname = "Sezer")
-        val user3 = User(name = "Erol", surname = "Sezer")*//*
-    *//*    val question = Questions(question = "language?",option_1 = "kotlin",option_2 = "kotlin",option_3 = "kotlin",option_4 = "kotlin",answer = "kotlin")
-        val category = Category(name = "ebu",questions = question)*//*
-        database.reference.child("users").child("user1").setValue(user1)
-        database.reference.child("users").child("user2").setValue(user2)
-        database.reference.child("users").child("user3").setValue(user3)
-*//*
-        database.reference.child("categories").child("catehory_ebu").setValue(category)
-*//*
-    }*/
 }
 
 

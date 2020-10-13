@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
         val listAdapter =QuizListAdapter(viewModel.categoryList)
         binding.quizList.adapter = listAdapter
 
-        viewModel.getCategories()
+        viewModel.readData()
         // Inflate the layout for this fragment
         return binding.root
     }
