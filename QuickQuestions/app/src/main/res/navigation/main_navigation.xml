@@ -29,5 +29,16 @@
             app:destination="@id/signFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_homeFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.ess.quickquestions.ui.questionview.QuestionFragment"
+        android:label="QuestionFragment">
+        <argument
+            android:name="Category"
+            app:argType="com.ess.quickquestions.model.CategoryX" />
     </fragment>
 </navigation>
