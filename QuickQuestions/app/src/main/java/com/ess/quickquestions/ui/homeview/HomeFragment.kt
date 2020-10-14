@@ -34,7 +34,8 @@ class HomeFragment : Fragment() {
         binding.viewModel = viewModel
         val homeView =  inflater.inflate(R.layout.fragment_home, container, false)
 
-        (activity as AppCompatActivity).setSupportActionBar(binding.root.findViewById(R.id.home_toolbar))
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (activity as AppCompatActivity).supportActionBar?.title = "Welcome"
 
 
         val categoryLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
