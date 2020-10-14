@@ -43,9 +43,14 @@ class HomeFragment : Fragment() {
         val listLayoutManager = LinearLayoutManager(context)
         binding.quizList.layoutManager = listLayoutManager
 
+        viewModel.navigateToSign.observe(viewLifecycleOwner, Observer { isNavigate ->
+            if(isNavigate){
+                val navController = findNavController()
+                navController.navigate(HomeFragmentDirections.actionHomeFragmentToSignFragment())
+                viewModel.onNavigatedToSign()
+            }
+        })
 
-
-        println(viewModel.categoryList)
         viewModel.categoryList.observe(viewLifecycleOwner, Observer {categories ->
             val categoryAdapter = CategoryCardListAdapter(categories)
             binding.categoricalCardList.adapter = categoryAdapter
