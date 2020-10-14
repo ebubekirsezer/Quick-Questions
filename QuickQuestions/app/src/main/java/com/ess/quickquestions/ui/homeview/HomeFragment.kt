@@ -55,7 +55,10 @@ class HomeFragment : Fragment() {
             val categoryAdapter = CategoryCardListAdapter(categories)
             binding.categoricalCardList.adapter = categoryAdapter
 
-            val listAdapter =QuizListAdapter(categories)
+            val listAdapter =QuizListAdapter(categories,QuizListAdapter.OnClickListener{
+                val navController = findNavController()
+                navController.navigate(HomeFragmentDirections.actionHomeFragmentToQuestionFragment(it))
+            })
             binding.quizList.adapter = listAdapter
         })
 
