@@ -26,7 +26,9 @@ class QuestionFragment : Fragment() {
         val category= QuestionFragmentArgs.fromBundle(requireArguments()).Category
         binding.questionText.text  = category.questions[0].question
 
-        viewModel = ViewModelProvider(this).get(QuestionViewModel::class.java)
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = QuestionViewModelFactory(category,application)
+        viewModel = ViewModelProvider(this,viewModelFactory).get(QuestionViewModel::class.java)
 
         binding.viewModel = viewModel
         return binding.root
