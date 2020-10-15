@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/option_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/small_margin"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="@dimen/small_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/small_padding">
+
+        <ImageButton
+            android:id="@+id/button_option"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@drawable/circle_button"
+            android:backgroundTint="@color/textGreyColor" />
+
+        <TextView
+            android:id="@+id/option_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/large_margin"
+            android:text="Option 1"
+            android:textColor="@color/textBlackColor"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
