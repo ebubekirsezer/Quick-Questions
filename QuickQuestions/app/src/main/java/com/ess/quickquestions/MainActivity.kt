@@ -23,10 +23,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val isAuth = intent.getBooleanExtra("isAuth",false)
-        println(isAuth)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+        toolbar.setTitleTextColor(resources.getColor(R.color.textColorPrimary))
 
         val navHostFragment = sign_fragment as NavHostFragment
         val graphInflater = navHostFragment.navController.navInflater

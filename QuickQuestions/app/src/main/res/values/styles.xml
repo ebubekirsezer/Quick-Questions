@@ -5,8 +5,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--Back Button Color -->
+        <item name="colorControlNormal">@color/textColorPrimary</item>
     </style>
-
 
     <style name="Base.Widget.MaterialComponents.TextInputLayout." parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="hintTextAppearance">@style/Base.Widget.MaterialComponents.TextInputLayout.HintText</item>
