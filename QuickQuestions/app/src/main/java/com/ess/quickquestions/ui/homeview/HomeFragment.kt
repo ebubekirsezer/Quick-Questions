@@ -1,10 +1,8 @@
 package com.ess.quickquestions.ui.homeview
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
@@ -28,15 +26,18 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentHomeBinding.inflate(inflater)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-
-        binding.viewModel = viewModel
-        val homeView =  inflater.inflate(R.layout.fragment_home, container, false)
-
+        //Showing the action bar
+        (activity as AppCompatActivity).supportActionBar?.show()
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         (activity as AppCompatActivity).supportActionBar?.title = "Welcome"
 
+        val binding = FragmentHomeBinding.inflate(inflater)
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+
+        setHasOptionsMenu(true)
+
+        binding.viewModel = viewModel
+        val homeView =  inflater.inflate(R.layout.fragment_home, container, false)
 
         val categoryLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.categoricalCardList.layoutManager = categoryLayoutManager
@@ -82,5 +83,20 @@ class HomeFragment : Fragment() {
         viewModel.readData()
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu,menu)
+
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.sign_out -> {
+                viewModel.signOut()
+            }
+        }
+        return true
     }
 }

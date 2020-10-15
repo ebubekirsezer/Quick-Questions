@@ -5,6 +5,7 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -28,6 +29,9 @@ class SignFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        //Hiding action bar
+        (activity as AppCompatActivity).supportActionBar?.hide()
 
         val binding = FragmentSignBinding.inflate(inflater)
         viewModel = ViewModelProvider(this).get(SignViewModel::class.java)
