@@ -1,11 +1,13 @@
 package com.ess.quickquestions.ui.questionview
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ess.quickquestions.R
@@ -54,9 +56,39 @@ class QuestionFragment : Fragment() {
             binding.optionText4.text = it.option_4
         })
 
+        setOptionClicked(binding)
 
         binding.viewModel = viewModel
 
         return binding.root
+    }
+
+    //Button click event
+    private fun setOptionClicked(binding: FragmentQuestionBinding) {
+        binding.optionCard1.setOnClickListener {
+            binding.buttonOption.backgroundTintList = resources.getColorStateList(R.color.colorPrimary)
+            binding.buttonOption2.backgroundTintList = resources.getColorStateList(R.color.textGreyColor)
+            binding.buttonOption3.backgroundTintList = resources.getColorStateList(R.color.textGreyColor)
+            binding.buttonOption4.backgroundTintList = resources.getColorStateList(R.color.textGreyColor)
+        }
+
+        binding.optionCard2.setOnClickListener {
+            binding.buttonOption.backgroundTintList = resources.getColorStateList(R.color.textGreyColor)
+            binding.buttonOption2.backgroundTintList = resources.getColorStateList(R.color.colorPrimary)
+            binding.buttonOption3.backgroundTintList = resources.getColorStateList(R.color.textGreyColor)
+            binding.buttonOption4.backgroundTintList = resources.getColorStateList(R.color.textGreyColor)
+        }
+        binding.optionCard3.setOnClickListener {
+            binding.buttonOption.backgroundTintList = resources.getColorStateList(R.color.textGreyColor)
+            binding.buttonOption2.backgroundTintList = resources.getColorStateList(R.color.textGreyColor)
+            binding.buttonOption3.backgroundTintList = resources.getColorStateList(R.color.colorPrimary)
+            binding.buttonOption4.backgroundTintList = resources.getColorStateList(R.color.textGreyColor)
+        }
+        binding.optionCard4.setOnClickListener {
+            binding.buttonOption.backgroundTintList = resources.getColorStateList(R.color.textGreyColor)
+            binding.buttonOption2.backgroundTintList = resources.getColorStateList(R.color.textGreyColor)
+            binding.buttonOption3.backgroundTintList = resources.getColorStateList(R.color.textGreyColor)
+            binding.buttonOption4.backgroundTintList = resources.getColorStateList(R.color.colorPrimary)
+        }
     }
 }
