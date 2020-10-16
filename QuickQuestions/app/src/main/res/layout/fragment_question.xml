@@ -154,13 +154,30 @@
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="@dimen/small_margin"
             android:background="@color/colorPrimary"
+            android:onClick="@{() -> viewModel.submit()}"
             android:text="Submit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_next"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:background="@color/colorPrimary"
+            android:onClick="@{() -> viewModel.next()}"
+            android:text="Next"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
