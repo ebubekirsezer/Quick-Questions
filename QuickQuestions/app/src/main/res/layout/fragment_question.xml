@@ -29,7 +29,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="100dp"
-            android:text="TextView"
             android:textColor="@color/textColorPrimary"
             android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="@+id/view_curved_rectangle"
@@ -66,7 +65,6 @@
                         android:id="@+id/option_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Option 1"
                         style="@style/Question_Text_Style"/>
                 </LinearLayout>
 
@@ -93,7 +91,6 @@
                         android:id="@+id/option_text_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Option 2"
                         style="@style/Question_Text_Style"/>
                 </LinearLayout>
 
@@ -120,7 +117,6 @@
                         android:id="@+id/option_text_3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Option 3"
                         style="@style/Question_Text_Style"/>
                 </LinearLayout>
 
@@ -147,7 +143,6 @@
                         android:id="@+id/option_text_4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Option 4"
                         style="@style/Question_Text_Style"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

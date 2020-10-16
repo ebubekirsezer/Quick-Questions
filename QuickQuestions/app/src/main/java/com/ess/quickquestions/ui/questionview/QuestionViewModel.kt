@@ -16,10 +16,6 @@ class QuestionViewModel(
     val questionList: LiveData<List<Question>>
         get() = _questionList
 
-    private var _questionIndex = MutableLiveData<Int>()
-    val questionIndex : LiveData<Int>
-        get() = _questionIndex
-
     private var _isSubmit = MutableLiveData<Boolean>()
     val isSubmit : LiveData<Boolean>
         get() = _isSubmit
@@ -28,10 +24,14 @@ class QuestionViewModel(
     val isNext : LiveData<Boolean>
         get() = _isNext
 
+    var questionIndex = 0
+
+    private var _question = MutableLiveData<Question>()
+    val question : LiveData<Question>
+        get() = _question
 
     init {
-        _questionList.value = category.questions
-        println(category.questions)
+        setQuestion()
     }
 
     fun submit(){
@@ -40,8 +40,23 @@ class QuestionViewModel(
     }
 
     fun next(){
-        _isNext.value = true
-        _isSubmit.value = false
+        if(questionIndex >= 5){
+
+        }
+        else{
+            questionIndex = questionIndex + 1
+            setQuestion()
+            _isNext.value = true
+            _isSubmit.value = false
+        }
     }
+
+    fun setQuestion(){
+        if(questionIndex < category.questions.count()){
+            _question.value = category.questions.get(questionIndex)
+        }
+    }
+
+
 
 }

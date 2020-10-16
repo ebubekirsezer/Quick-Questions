@@ -10,11 +10,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ess.quickquestions.R
 import com.ess.quickquestions.databinding.FragmentQuestionBinding
+import com.ess.quickquestions.model.Question
 
 
 class QuestionFragment : Fragment() {
 
     private lateinit var viewModel: QuestionViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,12 +27,10 @@ class QuestionFragment : Fragment() {
         val binding = FragmentQuestionBinding.inflate(inflater)
 
         val category= QuestionFragmentArgs.fromBundle(requireArguments()).Category
-        binding.questionText.text  = category.questions[0].question
 
         val application = requireNotNull(this.activity).application
         val viewModelFactory = QuestionViewModelFactory(category,application)
         viewModel = ViewModelProvider(this,viewModelFactory).get(QuestionViewModel::class.java)
-
 
         viewModel.isNext.observe(viewLifecycleOwner, Observer {
             if(it){
@@ -46,8 +46,17 @@ class QuestionFragment : Fragment() {
             }
         })
 
+        viewModel.question.observe(viewLifecycleOwner, Observer {
+            binding.questionText.text = it.question
+            binding.optionText.text = it.option_1
+            binding.optionText2.text = it.option_2
+            binding.optionText3.text = it.option_3
+            binding.optionText4.text = it.option_4
+        })
+
 
         binding.viewModel = viewModel
+
         return binding.root
     }
 }
