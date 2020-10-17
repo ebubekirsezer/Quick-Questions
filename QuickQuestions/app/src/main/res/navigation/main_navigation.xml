@@ -40,5 +40,23 @@
         <argument
             android:name="Category"
             app:argType="com.ess.quickquestions.model.CategoryX" />
+        <action
+            android:id="@+id/action_questionFragment_to_finishFragment"
+            app:destination="@id/finishFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishFragment"
+        android:name="com.ess.quickquestions.ui.finishview.FinishFragment"
+        android:label="FinishFragment" >
+        <argument
+            android:name="score"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_finishFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/finishFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>

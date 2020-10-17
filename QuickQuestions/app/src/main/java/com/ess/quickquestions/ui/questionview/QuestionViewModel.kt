@@ -38,6 +38,10 @@ class QuestionViewModel(
     val isNotSelectedOption : LiveData<Boolean>
         get() = _inNotSelectedOption
 
+    private val _isTestFinish = MutableLiveData<Boolean>()
+    val isTestFinish : LiveData<Boolean>
+        get() = _isTestFinish
+
     var score = 0
 
     init {
@@ -54,7 +58,6 @@ class QuestionViewModel(
             if (_isCorrect.value!!)
                 score = score + 20
 
-            println(score)
             _isNext.value = false
             _isSubmit.value = true
         }
@@ -81,15 +84,14 @@ class QuestionViewModel(
     }
 
     fun next(){
-        if(questionIndex >= 5){
-
-        }
-        else{
-            questionIndex = questionIndex + 1
+        questionIndex = questionIndex + 1
+        if(questionIndex < 5){
             setQuestion()
             _isNext.value = true
             _isSubmit.value = false
         }
+        else
+            _isTestFinish.value = true
     }
 
     fun setQuestion(){

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.ess.quickquestions.R
 import com.ess.quickquestions.databinding.FragmentQuestionBinding
 import com.ess.quickquestions.model.Question
@@ -103,6 +104,13 @@ class QuestionFragment : Fragment() {
         viewModel.isNotSelectedOption.observe(viewLifecycleOwner, Observer {isNotSelected ->
             if(isNotSelected)
                 Toast.makeText(context,"You have to select an Option!!", Toast.LENGTH_SHORT).show()
+        })
+
+        viewModel.isTestFinish.observe(viewLifecycleOwner, Observer { isFinish ->
+            if(isFinish){
+                val navController = findNavController()
+                navController.navigate(QuestionFragmentDirections.actionQuestionFragmentToFinishFragment(viewModel.score))
+            }
         })
 
 
