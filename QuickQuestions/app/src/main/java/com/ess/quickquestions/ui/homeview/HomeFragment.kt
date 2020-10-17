@@ -60,8 +60,9 @@ class HomeFragment : Fragment() {
             binding.categoricalCardList.adapter = categoryAdapter
 
             val listAdapter =QuizListAdapter(categories,QuizListAdapter.OnClickListener{
+                binding.quizList.isEnabled = false
                 val navController = findNavController()
-                navController.navigate(HomeFragmentDirections.actionHomeFragmentToQuestionFragment(it))
+                navController?.navigate(HomeFragmentDirections.actionHomeFragmentToQuestionFragment(it))
             })
             binding.quizList.adapter = listAdapter
         })
