@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.ess.quickquestions.R
 import com.ess.quickquestions.databinding.FragmentFinishBinding
 import kotlinx.android.synthetic.main.fragment_finish.*
@@ -38,6 +39,11 @@ class FinishFragment : Fragment() {
             binding.textResult.text = "Congrats !!"
             binding.textScore.text = "Your Score: " + score
             binding.textSuggestion.visibility = View.GONE
+        }
+
+        binding.buttonTakeQuiz.setOnClickListener {
+            val navController = findNavController()
+            navController.navigate(FinishFragmentDirections.actionFinishFragmentToHomeFragment())
         }
 
         viewModel = ViewModelProvider(this).get(FinishViewModel::class.java)
