@@ -38,6 +38,8 @@ class QuestionViewModel(
     val isNotSelectedOption : LiveData<Boolean>
         get() = _inNotSelectedOption
 
+    var score = 0
+
     init {
         setQuestion()
     }
@@ -49,6 +51,10 @@ class QuestionViewModel(
         } else{
             _inNotSelectedOption.value = false
             _isCorrect.value = checkAnswer(optionIndex)
+            if (_isCorrect.value!!)
+                score = score + 20
+
+            println(score)
             _isNext.value = false
             _isSubmit.value = true
         }
