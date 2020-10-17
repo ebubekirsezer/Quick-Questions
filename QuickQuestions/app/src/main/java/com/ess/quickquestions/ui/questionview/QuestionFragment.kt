@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -99,6 +100,11 @@ class QuestionFragment : Fragment() {
             }
         })
 
+        viewModel.isNotSelectedOption.observe(viewLifecycleOwner, Observer {isNotSelected ->
+            if(isNotSelected)
+                Toast.makeText(context,"You have to select an Option!!", Toast.LENGTH_SHORT).show()
+        })
+
 
         setOptionClicked(binding)
 
@@ -160,6 +166,10 @@ class QuestionFragment : Fragment() {
             return 4
             println("Option 4")
         } else{
+            binding.optionCard1.isClickable = true
+            binding.optionCard2.isClickable = true
+            binding.optionCard3.isClickable = true
+            binding.optionCard4.isClickable = true
             return 0
             println("No option")
         }

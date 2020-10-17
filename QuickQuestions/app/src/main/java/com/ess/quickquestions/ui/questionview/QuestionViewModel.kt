@@ -34,14 +34,24 @@ class QuestionViewModel(
     val isCorrect : LiveData<Boolean>
         get() = _isCorrect
 
+    private val _inNotSelectedOption = MutableLiveData<Boolean>()
+    val isNotSelectedOption : LiveData<Boolean>
+        get() = _inNotSelectedOption
+
     init {
         setQuestion()
     }
 
     fun submit(optionIndex: Int){
-        _isCorrect.value = checkAnswer(optionIndex)
-        _isNext.value = false
-        _isSubmit.value = true
+
+        if(optionIndex == 0){
+            _inNotSelectedOption.value = true
+        } else{
+            _inNotSelectedOption.value = false
+            _isCorrect.value = checkAnswer(optionIndex)
+            _isNext.value = false
+            _isSubmit.value = true
+        }
     }
 
     private fun checkAnswer(optionIndex: Int) : Boolean {
