@@ -10,4 +10,6 @@
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="textGreyColor">#D3D3D3</color>
     <color name="textBlackColor">#000000</color>
+    <color name="correctGreen">#00FF00</color>
+    <color name="wrongRed">#ff0033</color>
 </resources>

@@ -30,13 +30,38 @@ class QuestionViewModel(
     val question : LiveData<Question>
         get() = _question
 
+    private val _isCorrect = MutableLiveData<Boolean>()
+    val isCorrect : LiveData<Boolean>
+        get() = _isCorrect
+
     init {
         setQuestion()
     }
 
-    fun submit(){
+    fun submit(optionIndex: Int){
+        _isCorrect.value = checkAnswer(optionIndex)
         _isNext.value = false
         _isSubmit.value = true
+    }
+
+    private fun checkAnswer(optionIndex: Int) : Boolean {
+        when(optionIndex){
+            1 -> {
+                return _question.value?.option_1 == _question.value?.answer
+            }
+            2 -> {
+                return _question.value?.option_2 == _question.value?.answer
+            }
+            3 ->{
+                return _question.value?.option_3 == _question.value?.answer
+            }
+            4 ->{
+                return _question.value?.option_4 == _question.value?.answer
+            }
+            else -> {
+                return false
+            }
+        }
     }
 
     fun next(){
