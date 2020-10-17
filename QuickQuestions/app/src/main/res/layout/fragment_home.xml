@@ -20,42 +20,6 @@
             android:layout_height="match_parent"
             tools:context=".ui.homeview.HomeFragment">
 
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/home_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/small_margin"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/quicksand"
-                        android:text="@string/welcome"
-                        android:textColor="@color/textColorPrimary"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:onClick="@{() -> viewModel.signOut()}"
-                        android:src="@drawable/ic_signout" />
-                </RelativeLayout>
-
-            </androidx.appcompat.widget.Toolbar>
-
             <View
                 android:id="@+id/view_curved_rectangle"
                 android:layout_width="wrap_content"
@@ -63,7 +27,7 @@
                 android:background="@drawable/curved_rectangular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_toolbar" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/categorical_card_list"
@@ -73,7 +37,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_toolbar" />
+                app:layout_constraintTop_toTopOf="@+id/view_curved_rectangle" />
 
             <TextView
                 android:id="@+id/top_quizzes_title"

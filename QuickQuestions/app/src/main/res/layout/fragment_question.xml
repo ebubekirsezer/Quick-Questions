@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ess.quickquestions.ui.questionview.QuestionViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.questionview.QuestionFragment">
+
+        <View
+            android:id="@+id/view_curved_rectangle"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:background="@drawable/bottom_circular_rectangle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/question_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginRight="@dimen/small_margin"
+            android:layout_marginBottom="125dp"
+            android:textAlignment="center"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view_curved_rectangle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/view_curved_rectangle">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/option_card_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Question_Card_View">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/small_padding">
+
+                    <ImageButton
+                        android:id="@+id/button_option"
+                        android:background="@drawable/circle_button"
+                        style="@style/Question_Image_Button"/>
+
+                    <TextView
+                        android:id="@+id/option_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Question_Text_Style"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/option_card_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Question_Card_View">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/small_padding">
+
+                    <ImageButton
+                        android:id="@+id/button_option_2"
+                        android:background="@drawable/circle_button"
+                        style="@style/Question_Image_Button"/>
+
+                    <TextView
+                        android:id="@+id/option_text_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Question_Text_Style"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/option_card_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Question_Card_View">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/small_padding">
+
+                    <ImageButton
+                        android:id="@+id/button_option_3"
+                        android:background="@drawable/circle_button"
+                        style="@style/Question_Image_Button"/>
+
+                    <TextView
+                        android:id="@+id/option_text_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Question_Text_Style"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/option_card_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Question_Card_View">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/small_padding">
+
+                    <ImageButton
+                        android:id="@+id/button_option_4"
+                        android:background="@drawable/circle_button"
+                        style="@style/Question_Image_Button"/>
+
+                    <TextView
+                        android:id="@+id/option_text_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Question_Text_Style"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:background="@color/colorPrimary"
+            android:text="Submit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_next"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:background="@color/colorPrimary"
+            android:text="Next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
