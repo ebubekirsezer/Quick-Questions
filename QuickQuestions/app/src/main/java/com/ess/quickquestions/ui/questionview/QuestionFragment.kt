@@ -102,6 +102,11 @@ class QuestionFragment : Fragment() {
 
         setOptionClicked(binding)
 
+        binding.buttonNext.setOnClickListener {
+            resetOptions(binding)
+            viewModel.next()
+        }
+
         binding.buttonSubmit.setOnClickListener {
             optionIndex = checkSelectedButton(binding)
             viewModel.submit(optionIndex)
@@ -112,7 +117,33 @@ class QuestionFragment : Fragment() {
         return binding.root
     }
 
+    private fun resetOptions(binding: FragmentQuestionBinding) {
+
+        binding.optionCard1.isClickable = true
+        binding.optionCard2.isClickable = true
+        binding.optionCard3.isClickable = true
+        binding.optionCard4.isClickable = true
+
+        binding.buttonOption.setImageResource(android.R.color.transparent)
+        binding.buttonOption.backgroundTintList =resources.getColorStateList(R.color.textGreyColor)
+
+        binding.buttonOption2.setImageResource(android.R.color.transparent)
+        binding.buttonOption2.backgroundTintList =resources.getColorStateList(R.color.textGreyColor)
+
+        binding.buttonOption3.setImageResource(android.R.color.transparent)
+        binding.buttonOption3.backgroundTintList =resources.getColorStateList(R.color.textGreyColor)
+
+        binding.buttonOption4.setImageResource(android.R.color.transparent)
+        binding.buttonOption4.backgroundTintList =resources.getColorStateList(R.color.textGreyColor)
+    }
+
     private fun checkSelectedButton(binding: FragmentQuestionBinding): Int {
+
+        binding.optionCard1.isClickable = false
+        binding.optionCard2.isClickable = false
+        binding.optionCard3.isClickable = false
+        binding.optionCard4.isClickable = false
+
         if(binding.buttonOption.backgroundTintList == resources.getColorStateList(R.color.colorPrimary)){
             return 1
             println("Option 1")

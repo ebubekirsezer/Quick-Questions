@@ -170,7 +170,6 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="@dimen/small_margin"
             android:background="@color/colorPrimary"
-            android:onClick="@{() -> viewModel.next()}"
             android:text="Next"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
