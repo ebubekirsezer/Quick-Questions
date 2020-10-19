@@ -75,6 +75,9 @@ class SignViewModel(val application: Application) : ViewModel() {
                     println("Unlucky")
                 }
             }
+        } else{
+            _loadingProcess.value = false
+            Toast.makeText(application.applicationContext,application.applicationContext.getString(R.string.fix_errors),Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -115,8 +118,10 @@ class SignViewModel(val application: Application) : ViewModel() {
                     ).show()
                 }
             }
-        } else
+        } else{
             _loadingProcess.value = false
+            Toast.makeText(application.applicationContext,application.applicationContext.getString(R.string.fix_errors),Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun onNavigatedToSignUp() {

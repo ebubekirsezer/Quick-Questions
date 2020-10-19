@@ -17,4 +17,5 @@
     <string name="password_not_match">Passwords not match</string>
     <string name="email_information">Email information must be true</string>
     <string name="cannot_empty">This field cannot be empty</string>
+    <string name="fix_errors">You have to fix the Errors</string>
 </resources>
