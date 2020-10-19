@@ -99,7 +99,8 @@ class SignViewModel : ViewModel() {
                     println("Try again")
                 }
             }
-        }
+        } else
+            _loadingProcess.value = false
     }
 
     fun onNavigatedToSignUp(){
