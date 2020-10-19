@@ -70,6 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:text="You should take the quiz again"
+            android:textAlignment="center"
             android:textColor="@color/textColorPrimary"
             android:textSize="28sp"
             android:visibility="gone"
