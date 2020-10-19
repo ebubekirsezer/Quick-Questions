@@ -77,7 +77,7 @@ class SignViewModel(val application: Application) : ViewModel() {
             }
         } else{
             _loadingProcess.value = false
-            Toast.makeText(application.applicationContext,application.applicationContext.getString(R.string.fix_errors),Toast.LENGTH_SHORT).show()
+            Toast.makeText(application.applicationContext,context.getString(R.string.fix_errors),Toast.LENGTH_SHORT).show()
         }
     }
 
