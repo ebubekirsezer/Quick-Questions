@@ -127,14 +127,14 @@ class SignViewModel(val application: Application) : ViewModel() {
     private fun isEmailValid(email: TextInputEditText?, emailInput: TextInputLayout?): Boolean {
 
         return if (email?.text.isNullOrEmpty()) {
-            emailInput?.error = "This field cannot be empty"
+            emailInput?.error = application.applicationContext.getString(R.string.cannot_empty)
             false
         } else {
             if (email?.text != null && email.text!!.trim().matches(Regex(emailPattern))) {
                 emailInput?.error = null
                 true
             } else {
-                emailInput?.error = "Email information must be true"
+                emailInput?.error = application.applicationContext.getString(R.string.email_information)
                 false
             }
         }
@@ -146,15 +146,14 @@ class SignViewModel(val application: Application) : ViewModel() {
         passwordInput: TextInputLayout?
     ): Boolean {
         return if (password?.text.isNullOrEmpty()) {
-            passwordInput?.error = "This field cannot be empty"
-            //password?.error = "Bu alan boş bırakılamaz"
+            passwordInput?.error = application.applicationContext.getString(R.string.text_cannot_empty_warning)
             false
         } else {
             if (password?.text != null && password.text!!.length >= 8) {
                 passwordInput?.error = null
                 true
             } else {
-                passwordInput?.error = "Password length must be at least 8 character"
+                passwordInput?.error = application.applicationContext.getString(R.string.password_length_warning)
                 false
             }
         }
@@ -167,11 +166,11 @@ class SignViewModel(val application: Application) : ViewModel() {
         repasswordInput: TextInputLayout?
     ): Boolean {
         if (repasswordText?.text.isNullOrEmpty()) {
-            repasswordInput?.error = "This field cannot be empty"
+            repasswordInput?.error = application.applicationContext.getString(R.string.text_cannot_empty_warning)
             return false
         } else {
             if (passwordText?.text?.trim().toString() != repasswordText?.text?.trim().toString()) {
-                repasswordInput?.error = "Passwords not match"
+                repasswordInput?.error = application.applicationContext.getString(R.string.password_not_match)
                 return false
             } else {
                 repasswordInput?.error = null

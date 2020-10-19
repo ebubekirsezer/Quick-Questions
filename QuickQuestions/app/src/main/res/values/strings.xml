@@ -5,11 +5,16 @@
     <string name="password">Password</string>
     <string name="re_password">Re-Password</string>
     <string name="e_mail">E-mail</string>
-    <string name="sign_up">Sign Up</string>
+    <string name="sign_up">SIGN UP</string>
     <string name="quick_questions">Quick Questions</string>
-    <string name="sign_in">Sign in</string>
+    <string name="sign_in">SIGN IN</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="welcome">Welcome</string>
     <string name="start">Start</string>
     <string name="top_quizzes">Top Quizzes</string>
+    <string name="password_length_warning">Password length must be at least 8 character</string>
+    <string name="text_cannot_empty_warning">This field cannot be empty</string>
+    <string name="password_not_match">Passwords not match</string>
+    <string name="email_information">Email information must be true</string>
+    <string name="cannot_empty">This field cannot be empty</string>
 </resources>
