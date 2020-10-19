@@ -1,5 +1,6 @@
 package com.ess.quickquestions.ui.signviews
 
+import android.app.Application
 import android.text.Editable
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
@@ -15,28 +16,28 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-enum class SignStatus {LOADING, ERROR, DONE}
+enum class SignStatus { LOADING, ERROR, DONE }
 
-class SignViewModel : ViewModel() {
+class SignViewModel(val application: Application) : ViewModel() {
 
     private lateinit var auth: FirebaseAuth
 
     var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
     private val _status = MutableLiveData<SignStatus>()
-    val status : LiveData<SignStatus>
+    val status: LiveData<SignStatus>
         get() = _status
 
     private val _loadingProcess = MutableLiveData<Boolean?>()
-    val loadingProcess : LiveData<Boolean?>
+    val loadingProcess: LiveData<Boolean?>
         get() = _loadingProcess
 
     private val _navigateToSignIn = MutableLiveData<Boolean>()
-    val navigateToSignIn : LiveData<Boolean>
+    val navigateToSignIn: LiveData<Boolean>
         get() = _navigateToSignIn
 
     private val _navigateToSignUp = MutableLiveData<Boolean>()
-    val navigateToSignUp : LiveData<Boolean>
+    val navigateToSignUp: LiveData<Boolean>
         get() = _navigateToSignUp
 
     init {
@@ -55,21 +56,32 @@ class SignViewModel : ViewModel() {
         val isMailValid = isEmailValid(emailText, emailInput)
         val isPasswordValid = isPasswordValid(passwordText, passwordInput)
 
-        if(isMailValid && isPasswordValid){
-            auth.signInWithEmailAndPassword(emailText?.text.toString(),passwordText?.text.toString()).addOnCompleteListener {
-                if(it.isSuccessful){
+        if (isMailValid && isPasswordValid) {
+            auth.signInWithEmailAndPassword(
+                emailText?.text.toString(),
+                passwordText?.text.toString()
+            ).addOnCompleteListener {
+                if (it.isSuccessful) {
                     _navigateToSignIn.value = true
                     _loadingProcess.value = false
                     println("Successfully Login")
-                } else{
+                } else {
                     _loadingProcess.value = false
+                    Toast.makeText(
+                        application.applicationContext,
+                        it.exception?.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
                     println("Unlucky")
                 }
             }
+        } else{
+            _loadingProcess.value = false
+            Toast.makeText(application.applicationContext,application.applicationContext.getString(R.string.fix_errors),Toast.LENGTH_SHORT).show()
         }
     }
 
-    fun onNavigatedToSignIn(){
+    fun onNavigatedToSignIn() {
         _navigateToSignIn.value = false
     }
 
@@ -87,22 +99,32 @@ class SignViewModel : ViewModel() {
         val isPasswordValid = isPasswordValid(passwordText, passwordInput)
         val isPasswordMatch = isPasswordMatch(passwordText, repasswordText, repasswordInput)
 
-        if(isMailValid && isPasswordValid && isPasswordMatch){
+        if (isMailValid && isPasswordValid && isPasswordMatch) {
 
-            auth.createUserWithEmailAndPassword(emailText?.text.toString(), passwordText?.text.toString()).addOnCompleteListener {
-                if(it.isSuccessful){
+            auth.createUserWithEmailAndPassword(
+                emailText?.text.toString(),
+                passwordText?.text.toString()
+            ).addOnCompleteListener {
+                if (it.isSuccessful) {
                     _loadingProcess.value = false
                     _navigateToSignUp.value = true
                     println("Awesome")
-                } else{
+                } else {
                     _loadingProcess.value = false
-                    println("Try again")
+                    Toast.makeText(
+                        application.applicationContext,
+                        it.exception?.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
+        } else{
+            _loadingProcess.value = false
+            Toast.makeText(application.applicationContext,application.applicationContext.getString(R.string.fix_errors),Toast.LENGTH_SHORT).show()
         }
     }
 
-    fun onNavigatedToSignUp(){
+    fun onNavigatedToSignUp() {
         _navigateToSignUp.value = false
     }
 
@@ -110,14 +132,14 @@ class SignViewModel : ViewModel() {
     private fun isEmailValid(email: TextInputEditText?, emailInput: TextInputLayout?): Boolean {
 
         return if (email?.text.isNullOrEmpty()) {
-            emailInput?.error = "This field cannot be empty"
+            emailInput?.error = application.applicationContext.getString(R.string.cannot_empty)
             false
         } else {
             if (email?.text != null && email.text!!.trim().matches(Regex(emailPattern))) {
                 emailInput?.error = null
                 true
             } else {
-                emailInput?.error = "Email information must be true"
+                emailInput?.error = application.applicationContext.getString(R.string.email_information)
                 false
             }
         }
@@ -129,15 +151,14 @@ class SignViewModel : ViewModel() {
         passwordInput: TextInputLayout?
     ): Boolean {
         return if (password?.text.isNullOrEmpty()) {
-            passwordInput?.error = "This field cannot be empty"
-            //password?.error = "Bu alan boş bırakılamaz"
+            passwordInput?.error = application.applicationContext.getString(R.string.text_cannot_empty_warning)
             false
         } else {
             if (password?.text != null && password.text!!.length >= 8) {
                 passwordInput?.error = null
                 true
             } else {
-                passwordInput?.error = "Password length must be at least 8 character"
+                passwordInput?.error = application.applicationContext.getString(R.string.password_length_warning)
                 false
             }
         }
@@ -150,11 +171,11 @@ class SignViewModel : ViewModel() {
         repasswordInput: TextInputLayout?
     ): Boolean {
         if (repasswordText?.text.isNullOrEmpty()) {
-            repasswordInput?.error = "This field cannot be empty"
+            repasswordInput?.error = application.applicationContext.getString(R.string.text_cannot_empty_warning)
             return false
         } else {
             if (passwordText?.text?.trim().toString() != repasswordText?.text?.trim().toString()) {
-                repasswordInput?.error = "Passwords not match"
+                repasswordInput?.error = application.applicationContext.getString(R.string.password_not_match)
                 return false
             } else {
                 repasswordInput?.error = null

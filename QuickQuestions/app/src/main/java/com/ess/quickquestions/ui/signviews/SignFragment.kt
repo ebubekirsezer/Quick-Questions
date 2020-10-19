@@ -5,6 +5,7 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ess.quickquestions.R
 import com.ess.quickquestions.databinding.FragmentSignBinding
 import com.ess.quickquestions.ui.homeview.CategoryCardListAdapter
+import com.ess.quickquestions.utils.hideKeyboard
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -34,11 +36,18 @@ class SignFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.hide()
 
         val binding = FragmentSignBinding.inflate(inflater)
-        viewModel = ViewModelProvider(this).get(SignViewModel::class.java)
+        val application = requireNotNull(requireActivity()).application
+        val viewModelFactory = SignViewModelFactory(application)
+        viewModel = ViewModelProvider(this,viewModelFactory).get(SignViewModel::class.java)
 
         auth = Firebase.auth
 
         binding.viewModel = viewModel
+
+
+        binding.signView.setOnClickListener {
+            hideKeyboard()
+        }
 
         //Input text click listener
         viewModel.onTextKeyListener(
@@ -54,7 +63,6 @@ class SignFragment : Fragment() {
             binding.signUpRepasswordInput
         )
 
-
         //Sign In Button Click Listener
         binding.signInButton.setOnClickListener {
             viewModel.onSignInClicked(
@@ -67,14 +75,6 @@ class SignFragment : Fragment() {
 
         //Sign Up Button Click Listener
         binding.signUpButton.setOnClickListener {
-/*            auth.createUserWithEmailAndPassword("ebubekirssezer@gmail.com","12345678").addOnCompleteListener {
-                if (it.isSuccessful){
-                    println("Başarılı")
-                }else {
-                    println("hata")
-                }
-            }*/
-
             viewModel.onSignUpClicked(
                 binding.signUpEmailText,
                 binding.signUpEmailInput,
@@ -125,6 +125,7 @@ class SignFragment : Fragment() {
     //Sign In and Sign Up tab click events
     private fun onTabSignClick() {
         button_sign_in.setOnClickListener {
+            hideKeyboard()
             button_sign_in.setTextColor(resources.getColor(R.color.textColorPrimary))
             horizontal_sign_in_line.setBackgroundColor(resources.getColor(R.color.textColorPrimary))
             button_sign_up.setTextColor(resources.getColor(R.color.textGreyColor))
@@ -135,6 +136,7 @@ class SignFragment : Fragment() {
         }
 
         button_sign_up.setOnClickListener {
+            hideKeyboard()
             button_sign_in.setTextColor(resources.getColor(R.color.textGreyColor))
             horizontal_sign_in_line.setBackgroundColor(resources.getColor(R.color.textGreyColor))
             button_sign_up.setTextColor(resources.getColor(R.color.textColorPrimary))
