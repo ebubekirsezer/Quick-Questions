@@ -5,6 +5,7 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -34,7 +35,9 @@ class SignFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.hide()
 
         val binding = FragmentSignBinding.inflate(inflater)
-        viewModel = ViewModelProvider(this).get(SignViewModel::class.java)
+        val application = requireNotNull(requireActivity()).application
+        val viewModelFactory = SignViewModelFactory(application)
+        viewModel = ViewModelProvider(this,viewModelFactory).get(SignViewModel::class.java)
 
         auth = Firebase.auth
 
@@ -53,7 +56,6 @@ class SignFragment : Fragment() {
             binding.signUpRepasswordText,
             binding.signUpRepasswordInput
         )
-
 
         //Sign In Button Click Listener
         binding.signInButton.setOnClickListener {
