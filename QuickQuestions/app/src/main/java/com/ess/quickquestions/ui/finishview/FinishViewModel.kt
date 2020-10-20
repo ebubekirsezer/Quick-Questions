@@ -13,24 +13,34 @@ class FinishViewModel : ViewModel() {
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
 
-    var user : User? = User()
+    var user: User? = User()
 
     init {
         auth = Firebase.auth
         database = Firebase.database
     }
 
-    fun updateScore(score: Int) {
-        database.getReference("user").child(auth.currentUser?.uid.toString())
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    user = snapshot.getValue(User::class.java)
-                }
+    fun updateScore(score: Int, dbScore: Int?) {
+        if (dbScore != null) {
+            if (score > dbScore) {
+                database.getReference("user").child(auth.currentUser?.uid.toString())
+                    .addValueEventListener(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            var user = snapshot.getValue(User::class.java)
+                            user?.score = score
+                            val childUpdates = hashMapOf<String, Any>(
+                                "user/${auth.currentUser?.uid.toString()}/score" to score
+                            )
 
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
+                            database.reference.updateChildren(childUpdates)
+                        }
 
-            })
+                        override fun onCancelled(error: DatabaseError) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
+            }
+        }
     }
 }

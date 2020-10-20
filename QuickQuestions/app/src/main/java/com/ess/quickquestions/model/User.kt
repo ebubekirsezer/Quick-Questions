@@ -3,5 +3,5 @@ package com.ess.quickquestions.model
 
 data class User(
     val email : String = "",
-    val score: Int = 0
+    var score: Int = 0
 )

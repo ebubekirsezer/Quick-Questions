@@ -44,7 +44,7 @@ class FinishFragment : Fragment() {
 
         val sharedPref = activity?.getSharedPreferences("QQ", Context.MODE_PRIVATE)
         var highestScore = sharedPref?.getInt("Score",15)
-        println(highestScore)
+
 
         binding.buttonTakeQuiz.setOnClickListener {
             val navController = findNavController()
@@ -54,6 +54,8 @@ class FinishFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(FinishViewModel::class.java)
 
         binding.viewModel = viewModel
+
+        viewModel.updateScore(score,highestScore)
 
         return binding.root
     }
