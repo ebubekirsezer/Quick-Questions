@@ -19,4 +19,5 @@
     <string name="cannot_empty">This field cannot be empty</string>
     <string name="fix_errors">You have to fix the Errors</string>
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="highest_score">Highest Score: </string>
 </resources>

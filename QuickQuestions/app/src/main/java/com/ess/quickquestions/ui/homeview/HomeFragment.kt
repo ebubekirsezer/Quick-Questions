@@ -80,6 +80,15 @@ class HomeFragment : Fragment() {
                 Toast.makeText(context,"Error occured",Toast.LENGTH_SHORT).show()
         })
 
+        viewModel.isErrorFetchingUser.observe(viewLifecycleOwner, Observer { isError ->
+            if(isError)
+                Toast.makeText(context,"Error occured",Toast.LENGTH_SHORT).show()
+        })
+
+        viewModel.highScore.observe(viewLifecycleOwner, Observer { score ->
+            binding.textScore.text = getString(R.string.highest_score) + " " + score
+        })
+
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(binding.categoricalCardList)
 
