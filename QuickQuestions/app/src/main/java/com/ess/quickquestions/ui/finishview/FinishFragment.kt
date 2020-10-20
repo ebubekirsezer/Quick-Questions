@@ -1,5 +1,6 @@
 package com.ess.quickquestions.ui.finishview
 
+import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -40,6 +41,10 @@ class FinishFragment : Fragment() {
             binding.textScore.text = "Your Score: " + score
             binding.textSuggestion.visibility = View.GONE
         }
+
+        val sharedPref = activity?.getSharedPreferences("QQ", Context.MODE_PRIVATE)
+        var highestScore = sharedPref?.getInt("Score",15)
+        println(highestScore)
 
         binding.buttonTakeQuiz.setOnClickListener {
             val navController = findNavController()

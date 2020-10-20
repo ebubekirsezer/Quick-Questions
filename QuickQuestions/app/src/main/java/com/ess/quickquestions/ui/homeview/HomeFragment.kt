@@ -1,5 +1,6 @@
 package com.ess.quickquestions.ui.homeview
 
+import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
@@ -31,7 +32,11 @@ class HomeFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.show()
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         (activity as AppCompatActivity).supportActionBar?.title = "Welcome"
-        (activity as AppCompatActivity).supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.colorPrimary)))
+        (activity as AppCompatActivity).supportActionBar?.setBackgroundDrawable(
+            ColorDrawable(
+                resources.getColor(R.color.colorPrimary)
+            )
+        )
 
         val binding = FragmentHomeBinding.inflate(inflater)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -39,53 +44,60 @@ class HomeFragment : Fragment() {
         setHasOptionsMenu(true)
 
         binding.viewModel = viewModel
-        val homeView =  inflater.inflate(R.layout.fragment_home, container, false)
+        val homeView = inflater.inflate(R.layout.fragment_home, container, false)
 
-        val categoryLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val categoryLayoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.categoricalCardList.layoutManager = categoryLayoutManager
 
         val listLayoutManager = LinearLayoutManager(context)
         binding.quizList.layoutManager = listLayoutManager
 
         viewModel.navigateToSign.observe(viewLifecycleOwner, Observer { isNavigate ->
-            if(isNavigate){
+            if (isNavigate) {
                 val navController = findNavController()
                 navController.navigate(HomeFragmentDirections.actionHomeFragmentToSignFragment())
                 viewModel.onNavigatedToSign()
             }
         })
 
-        viewModel.categoryList.observe(viewLifecycleOwner, Observer {categories ->
+        viewModel.categoryList.observe(viewLifecycleOwner, Observer { categories ->
             val categoryAdapter = CategoryCardListAdapter(categories)
             binding.categoricalCardList.adapter = categoryAdapter
 
-            val listAdapter =QuizListAdapter(categories,QuizListAdapter.OnClickListener{
+            val listAdapter = QuizListAdapter(categories, QuizListAdapter.OnClickListener {
                 binding.quizList.isEnabled = false
                 val navController = findNavController()
-                navController?.navigate(HomeFragmentDirections.actionHomeFragmentToQuestionFragment(it))
+                navController?.navigate(
+                    HomeFragmentDirections.actionHomeFragmentToQuestionFragment(
+                        it
+                    )
+                )
             })
             binding.quizList.adapter = listAdapter
         })
 
         viewModel.isLoading.observe(viewLifecycleOwner, Observer { visibility ->
-            if(visibility){
+            if (visibility) {
                 binding.progressBarCategoryLoad.visibility = View.VISIBLE
             } else {
                 binding.progressBarCategoryLoad.visibility = View.GONE
             }
         })
 
-        viewModel.isErrorFetchingModels.observe(viewLifecycleOwner, Observer {isError ->
-            if(isError)
-                Toast.makeText(context,"Error occured",Toast.LENGTH_SHORT).show()
+        viewModel.isErrorFetchingModels.observe(viewLifecycleOwner, Observer { isError ->
+            if (isError)
+                Toast.makeText(context, "Error occured", Toast.LENGTH_SHORT).show()
         })
 
         viewModel.isErrorFetchingUser.observe(viewLifecycleOwner, Observer { isError ->
-            if(isError)
-                Toast.makeText(context,"Error occured",Toast.LENGTH_SHORT).show()
+            if (isError)
+                Toast.makeText(context, "Error occured", Toast.LENGTH_SHORT).show()
         })
 
         viewModel.highScore.observe(viewLifecycleOwner, Observer { score ->
+            val sharedPref = activity?.getSharedPreferences("QQ", Context.MODE_PRIVATE)
+            sharedPref?.edit()?.putInt("Score",score)?.apply()
             binding.textScore.text = getString(R.string.highest_score) + " " + score
         })
 
@@ -98,13 +110,13 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.toolbar_menu,menu)
+        inflater.inflate(R.menu.toolbar_menu, menu)
 
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.sign_out -> {
                 viewModel.signOut()
             }
