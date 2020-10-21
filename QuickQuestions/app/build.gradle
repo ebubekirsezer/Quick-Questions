@@ -91,4 +91,7 @@ dependencies {
     //Firebase Cloud Messaging
     implementation 'com.google.firebase:firebase-messaging-ktx'
 
+    //Remote Config
+    implementation 'com.google.firebase:firebase-config-ktx'
+
 }
