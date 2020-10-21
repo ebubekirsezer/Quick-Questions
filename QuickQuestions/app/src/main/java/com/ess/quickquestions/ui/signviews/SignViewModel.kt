@@ -8,12 +8,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ess.quickquestions.R
+import com.ess.quickquestions.model.User
 import com.ess.quickquestions.repository.FirebaseRepository
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 enum class SignStatus { LOADING, ERROR, DONE }
@@ -21,6 +24,7 @@ enum class SignStatus { LOADING, ERROR, DONE }
 class SignViewModel(val application: Application) : ViewModel() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
 
     var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
@@ -42,6 +46,7 @@ class SignViewModel(val application: Application) : ViewModel() {
 
     init {
         auth = Firebase.auth
+        database = Firebase.database.reference
     }
 
     //Sign In Click Event
@@ -106,6 +111,8 @@ class SignViewModel(val application: Application) : ViewModel() {
                 passwordText?.text.toString()
             ).addOnCompleteListener {
                 if (it.isSuccessful) {
+                    val user = User(email = emailText?.text.toString(),score = 0)
+                    database.child("user").child(auth.currentUser?.uid.toString()).setValue(user)
                     _loadingProcess.value = false
                     _navigateToSignUp.value = true
                     println("Awesome")
