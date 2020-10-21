@@ -28,8 +28,9 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         auth = Firebase.auth
-        auth = Firebase.auth
         remoteConfig = Firebase.remoteConfig
+
+        currentUser = auth.currentUser
 
         val configSettings = remoteConfigSettings {
             minimumFetchIntervalInSeconds = 3600
@@ -83,7 +84,6 @@ class SplashActivity : AppCompatActivity() {
     }
 
     fun goHome() {
-        currentUser = auth.currentUser
         val intent = Intent(applicationContext, MainActivity::class.java)
         if (currentUser != null) intent.putExtra("isAuth", true)
         startActivity(intent)

@@ -18,8 +18,13 @@ android {
         targetSdkVersion 30
         versionCode 3
         versionName "1.0.3"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
     }
 
     buildTypes {
@@ -94,4 +99,6 @@ dependencies {
     //Remote Config
     implementation 'com.google.firebase:firebase-config-ktx'
 
+    //MutliDex
+    implementation 'com.android.support:multidex:1.0.3'
 }
